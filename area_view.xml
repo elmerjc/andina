@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	  <record id="view_andina_area_filter" model="ir.ui.view">
+        <field name="name">andina.area.select</field>
+        <field name="model">andina.area</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Area Operativa">
+                <field name="name" string="Descripción" filter_domain="[('name','ilike',self)]"/>
+           </search>
+        </field>
+      </record>
+
+      <record id="andina_area_tree" model="ir.ui.view">
+        <field name="name">andina.area.tree</field>
+        <field name="model">andina.area</field>
+        <field name="arch" type="xml">
+            <tree string="Area Operativa">
+                <field name="gerencia_id"/>
+                <field name="name"/>
+                <field name="descripcion"/>
+                <field name="tipo"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="andina_area_form" model="ir.ui.view">
+        <field name="name">andina.area.form</field>
+        <field name="model">andina.area</field>
+        <field name="arch" type="xml">
+            <form string="Area Operativa">
+            <sheet string="Area Operativa">
+                <h1>
+                    <label string="Descripción"/>
+                    <field name="name" class="oe_inline"/>
+                </h1>
+                <group>
+                    <field name="descripcion"/>
+                    <field name="tipo"/>
+                    <field name="gerencia_id"/>
+                </group>   
+            </sheet>
+            </form>
+        </field>
+      </record>
+
+      <record id="listar_area" model="ir.actions.act_window">
+        <field name="name">Area Operativa</field>
+        <field name="res_model">andina.area</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_andina_area_filter"/>
+      </record>
+
+      <menuitem id="area_operativa_action"  name="Area Operativa" parent="andina_datos_generales_view" action="listar_area" />
+
+    </data>
+</openerp>

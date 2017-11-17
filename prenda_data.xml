@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="1" model="andina.prenda">
+            <field name="name">CAPUCHON</field>
+            <field name="peso">1.100</field>
+        </record>
+        <record id="2" model="andina.prenda">
+            <field name="name">CASACA CORTA</field>
+            <field name="peso">0.870</field>
+        </record>
+        <record id="3" model="andina.prenda">
+            <field name="name">CASACA CUERO</field>
+            <field name="peso">2.00</field>
+        </record>
+        <record id="4" model="andina.prenda">
+            <field name="name">CASACA DE LONA</field>
+            <field name="peso">0.980</field>
+        </record>
+        <record id="5" model="andina.prenda">
+            <field name="name">CHALECO</field>
+            <field name="peso">0.750</field>
+        </record>
+        <record id="6" model="andina.prenda">
+            <field name="name">ESCARPINES</field>
+            <field name="peso">0.450</field>
+        </record>
+        <record id="7" model="andina.prenda">
+            <field name="name">MAMELUCO</field>
+            <field name="peso">1.500</field>
+        </record>
+        <record id="8" model="andina.prenda">
+            <field name="name">MANDILES CON BROCHES SIN PERCHERA</field>
+            <field name="peso">0.800</field>
+        </record>
+        <record id="9" model="andina.prenda">
+            <field name="name">MANDILES CON HEBILLA Y PERCHERA</field>
+            <field name="peso">0.758</field>
+        </record>
+        <record id="10" model="andina.prenda">
+            <field name="name">MANDILES CON HEBILLA SIN PERCHERA</field>
+            <field name="peso">0.617</field>
+        </record>
+        <record id="11" model="andina.prenda">
+            <field name="name">MANDILES LONA CUERO</field>
+            <field name="peso">0.900</field>
+        </record>
+        <record id="12" model="andina.prenda">
+            <field name="name">PANTALONES DE CUERO</field>
+            <field name="peso">2.00</field>
+        </record>
+        <record id="13" model="andina.prenda">
+            <field name="name">PANTALON DE LONA</field>
+            <field name="peso">0.869</field>
+        </record>
+        <record id="14" model="andina.prenda">
+            <field name="name">CASACA Y PANT. IMPERMEABLE</field>
+            <field name="peso">1.500</field>
+        </record>
+        <record id="15" model="andina.prenda">
+            <field name="name">GUANTES CUERO PANTUFLAS</field>
+            <field name="peso">0.100</field>
+        </record>
+    </data>
+</openerp>

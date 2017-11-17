@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="action_report_controlindustrial"
+            string="Imprimir Control"
+            model="andina.lavado.industrial" 
+            report_type="qweb-pdf"
+            file="andina_industrial.report_controlindustrial" 
+            name="andina_industrial.report_controlindustrial" 
+        />
+
+        <report 
+            id="action_report_cantidades_wizard"
+            string="Imprimir Reporte"
+            model="wizard.report.cantidades"
+            report_type = "qweb-pdf"
+            file="andina_industrial.report_cantidades"
+            name="andina_industrial.report_cantidades"
+            menu="False"
+        />
+
+        <record id="andina_industrial.action_report_cantidades_wizard" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report.paperformat_euro" />
+        </record>
+
+        <report 
+            id="action_report_consolidado_wizard"
+            string="Imprimir Reporte"
+            model="wizard.report.consolidado"
+            report_type = "qweb-pdf"
+            file="andina_industrial.report_consolidado"
+            name="andina_industrial.report_consolidado"
+            menu="False"
+        />
+
+        <record id="andina_industrial.action_report_consolidado_wizard" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report.paperformat_euro" />
+        </record>
+
+        <report 
+            id="action_report_mantenimiento_wizard"
+            string="Imprimir Mantenimiento"
+            model="wizard.report.mantenimiento"
+            report_type = "qweb-pdf"
+            file="andina_industrial.report_mantenimiento"
+            name="andina_industrial.report_mantenimiento"
+            menu="False"
+        />
+
+        <record id="andina_industrial.action_report_mantenimiento_wizard" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report.paperformat_euro" />
+        </record>
+
+        <report 
+            id="action_report_operaciones_wizard"
+            string="Imprimir Operaciones"
+            model="wizard.report.operaciones"
+            report_type = "qweb-pdf"
+            file="andina_industrial.report_operaciones"
+            name="andina_industrial.report_operaciones"
+            menu="False"
+        />
+
+        <record id="andina_industrial.action_report_operaciones_wizard" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report.paperformat_euro" />
+        </record>
+
+        <report 
+            id="action_report_ferrocarriles_wizard"
+            string="Imprimir Ferrocarriles"
+            model="wizard.report.ferrocarriles"
+            report_type = "qweb-pdf"
+            file="andina_industrial.report_ferrocarriles"
+            name="andina_industrial.report_ferrocarriles"
+            menu="False"
+        />
+
+        <record id="andina_industrial.action_report_ferrocarriles_wizard" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report.paperformat_euro" />
+        </record>
+
+        <report 
+            id="action_report_detalle_wizard"
+            string="Imprimir Detalle"
+            model="wizard.report.detalle"
+            report_type = "qweb-pdf"
+            file="andina_industrial.report_detalle"
+            name="andina_industrial.report_detalle"
+            menu="False"
+        />
+
+        <record id="andina_industrial.action_report_detalle_wizard" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report.paperformat_euro" />
+        </record>
+    </data>
+</openerp>

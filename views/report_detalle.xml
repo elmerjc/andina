@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <template id="andina_industrial.report_detalle" name="Reporte del detalle del lavado por area operativa">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.andina_layout">
+                    <div id="report_andina" class="page">
+                        <div class="oe_structure"/>
+                        <h3>
+                            <span t-esc="o.titulo"/>
+                        </h3>
+                        <div style="height:40px;"></div>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width: 90px;">FECHA</th>
+                                    <th style="width: 70px;">TURNO</th>
+                                    <th style="width: 120px;">PRENDA</th>
+                                    <th style="width: 70px;">CANTIDAD</th>
+                                    <th t-if="o.print_persona">TRABAJADORES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="get_data_dates()">
+                                    <t t-set="suma" t-value="0"/>
+                                    <t t-foreach="get_data_dates()" t-as="dates">
+                                        <tr>
+                                            <td style="border-bottom:1pt solid black;" colspan="5">
+                                                <span t-esc="time.strftime('%d-%m-%Y',time.strptime(dates['date_recibido'],'%Y-%m-%d'))"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="get_data_detalle(dates['date_recibido'])" t-as="d">
+                                            <t t-set="suma" t-value="suma + d['cantidad_total']"/>
+                                            <td></td>
+                                            <td><span t-esc="d['turno']"/></td>
+                                            <td><span t-esc="d['prenda']"/></td>
+                                            <td><span t-esc="d['cantidad_total']"/></td>
+                                            <td t-if="o.print_persona">
+                                                <t t-foreach="get_data_persona(d['line_id'])" t-as="per">
+                                                    <span t-esc="per['codigo']"/><t t-esc="','"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t> 
+                                </t>
+                            </tbody>
+                            <tfooter>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td><strong>Total</strong></td>
+                                    <td><t t-esc="int(suma)"/></td>
+                                </tr>
+                            </tfooter>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>ILO, <span t-field="o.date_presentacion" t-field-options='{"format": "d MMMM Y"}'/></td>
+                            </tr>
+                        </table>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</data>
+</openerp>

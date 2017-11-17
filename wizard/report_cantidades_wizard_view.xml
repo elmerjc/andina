@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_wizard_print_report_cantidades" model="ir.ui.view">
+            <field name="name">Reporte del control de lavado industrial</field>
+            <field name="model">wizard.report.cantidades</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <p class="oe_gray">
+                        Elegir la gerencia o dejarla en blanco para mostrar todas las gerencias
+                    </p>
+                    <group>
+                        <field name="gerencia_id" options="{'no_create_edit': True}"/>
+                    </group>
+                    <group>
+                        <field name="date_presentacion"/>
+                    </group>
+                    <group>
+                        <field name="titulo"/>
+                    </group>
+                    <group>
+                        <field name="precio_kilo"/>
+                    </group>
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <field name="date_inicio"/>
+                        <field name="date_fin"/>
+                    </group>
+                    <footer>
+                        <button name="print_report_cantidades" string="Imprimir Reporte" type="object"  class="oe_highlight"  />
+                        o
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_wizard_print_report">
+            <field name="name">Imprimir Reporte</field>
+            <field name="res_model">wizard.report.cantidades</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_print_report_cantidades"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+            id="menu_action_wizard_print_report" 
+            action="action_wizard_print_report" 
+            parent="andina_lavado_industrial_reportes_view" 
+            groups="andina_industrial.group_name_andina_manager"
+            sequence="2"/>
+
+    </data>
+</openerp>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	  <record id="view_andina_persona_filter" model="ir.ui.view">
+        <field name="name">andina.persona.select</field>
+        <field name="model">andina.persona</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Trabajador">
+                <field name="name" string="Codigo" filter_domain="[('name','ilike',self)]"/>
+           </search>
+        </field>
+      </record>
+
+      <record id="andina_persona_tree" model="ir.ui.view">
+        <field name="name">andina.persona.tree</field>
+        <field name="model">andina.persona</field>
+        <field name="arch" type="xml">
+            <tree string="Trabajadores">
+                <field name="name"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="andina_persona_form" model="ir.ui.view">
+        <field name="name">andina.persona.form</field>
+        <field name="model">andina.persona</field>
+        <field name="arch" type="xml">
+            <form string="Trabajadores">
+            <sheet string="Trabajadores">
+                <h1>
+                    <label string="Código"/>
+                    <field name="name" class="oe_inline"/>
+                </h1>
+            </sheet>
+            </form>
+        </field>
+      </record>
+
+      <record id="listar_persona" model="ir.actions.act_window">
+        <field name="name">Trabajador</field>
+        <field name="res_model">andina.persona</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_andina_persona_filter"/>
+      </record>
+
+      <menuitem id="persona_action"  name="Trabajador" parent="andina_datos_generales_view" action="listar_persona" />
+
+    </data>
+</openerp>

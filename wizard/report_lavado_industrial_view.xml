@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_wizard_lavado_industrial" model="ir.ui.view">
+            <field name="name">Reporte del control de lavado industrial</field>
+            <field name="model">wizard.lavado.industrial</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <field name="date_inicio"/>
+                        <field name="date_fin"/>
+                    </group>
+                    <footer>
+                        <button name="open_table" string="Generar Reporte" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard_lavado_industrial" model="ir.actions.act_window">
+            <field name="name">Reporte de lavado industrial</field>
+            <field name="res_model">wizard.lavado.industrial</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_wizard_lavado_industrial"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_action_wizard_lavado_industrial" action="action_wizard_lavado_industrial" parent="andina_lavado_industrial_reportes_view" groups="andina_industrial.group_name_andina_manager" sequence="2"/>
+
+    <record id="view_report_lavado_industrial_tree" model="ir.ui.view">
+        <field name="name">Reporte del control de lavado industrial</field>
+        <field name="model">report.lavado.industrial</field>
+        <field name="arch" type="xml">
+            <tree string="Reporte del control de lavado industrial" create="0" delete="0">
+                <field name="date_recibido"/>
+                <field name="capuchon" sum="Total"/>
+                <field name="casaca_corta" sum="Total"/>
+                <field name="casaca_cuero" sum="Total"/>
+                <field name="casaca_lona" sum="Total"/>
+                <field name="chaleco" sum="Total"/>
+                <field name="escarpines" sum="Total"/>
+                <field name="mameluco" sum="Total"/>
+                <field name="mandiles_sbsp" sum="Total"/>
+                <field name="mandiles_chcp" sum="Total"/>
+                <field name="mandiles_chsp" sum="Total"/>
+                <field name="mandiles_lona" sum="Total"/>
+                <field name="pantalones_cuero" sum="Total"/>
+                <field name="pantalones_lona" sum="Total"/>
+                <field name="pantalones_impermeable" sum="Total"/>
+                <field name="guantes" sum="Total"/>
+                <field name="subtotal" sum="Total"/>
+           </tree>
+        </field>
+    </record>
+    <record id="view_report_lavado_industrial_graph" model="ir.ui.view">
+        <field name="name">report.lavado.industrial.value.graph</field>
+        <field name="model">report.lavado.industrial</field>
+        <field name="arch" type="xml">
+            <graph string="Reporte del control de lavado industrial" type="pivot">
+                <field name="date_recibido"/>
+                <field name="subtotal" operator="+"/>
+            </graph>
+        </field>
+    </record>
+    <record id="view_report_lavado_industrial_search" model="ir.ui.view">
+        <field name="name">report.lavado.industrial.report.search</field>
+        <field name="model">report.lavado.industrial</field>
+        <field name="arch" type="xml">
+            <search string="Buscar">
+                <field name="date_recibido" string="Fecha Recibido" filter_domain="[('date_recibido','ilike',self)]"/>
+                <separator/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Fecha Recibido" name="group_by_date_recibido" context="{'group_by':'date_recibido:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    </data>
+</openerp>
+

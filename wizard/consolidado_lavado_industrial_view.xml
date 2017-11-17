@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_wizard_consolidado_lavado_industrial" model="ir.ui.view">
+            <field name="name">Consolidado del control de lavado industrial</field>
+            <field name="model">wizard.consolidado.lavado.industrial</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <field name="date_inicio"/>
+                        <field name="date_fin"/>
+                    </group>
+                    <footer>
+                        <button name="open_table" string="Generar Consolidado" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard_consolidado_lavado_industrial" model="ir.actions.act_window">
+            <field name="name">Consolidado de lavado industrial</field>
+            <field name="res_model">wizard.consolidado.lavado.industrial</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_wizard_consolidado_lavado_industrial"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_action_wizard_consolidado_lavado_industrial" action="action_wizard_consolidado_lavado_industrial" parent="andina_lavado_industrial_reportes_view" groups="andina_industrial.group_name_andina_manager" sequence="2"/>
+
+    <record id="view_consolidado_lavado_industrial_tree" model="ir.ui.view">
+        <field name="name">Consolidado del control de lavado industrial</field>
+        <field name="model">consolidado.lavado.industrial</field>
+        <field name="arch" type="xml">
+            <tree string="Consolidado del control de lavado industrial" create="0" delete="0">
+                <field name="date_recibido"/>
+                <field name="gerencia"/>
+                <field name="area_operativa"/>
+                <field name="prenda"/>
+                <field name="cantidad_total" sum="Total"/>
+                <field name="kilos_total" sum="Total"/>
+           </tree>
+        </field>
+    </record>
+    <record id="view_consolidado_lavado_industrial_graph" model="ir.ui.view">
+        <field name="name">consolidado.lavado.industrial.value.graph</field>
+        <field name="model">consolidado.lavado.industrial</field>
+        <field name="arch" type="xml">
+            <graph string="Consolidado del control de lavado industrial" type="pivot">
+                <field name="date_recibido" type="row"/>
+                <field name="gerencia" type="row"/>
+                <field name="area_operativa" type="row"/>
+                <field name="prenda" type="row"/>
+                <field name="cantidad_total" operator="+" type="measure"/>
+                <field name="kilos_total" operator="+" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="view_consolidado_lavado_industrial_search" model="ir.ui.view">
+        <field name="name">consolidado.lavado.industrial.report.search</field>
+        <field name="model">consolidado.lavado.industrial</field>
+        <field name="arch" type="xml">
+            <search string="Buscar">
+                <field name="date_recibido" string="Fecha Recibido" filter_domain="[('date_recibido','ilike',self)]"/>
+                <separator/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Fecha Recibido" name="group_by_date_recibido" context="{'group_by':'date_recibido:day'}"/>
+                    <filter string="Area Operativa" name="group_by_area_operativa" context="{'group_by':'area_operativa'}"/>
+                    <filter string="Gerencia" name="group_by_gerencia" context="{'group_by':'gerencia'}"/>
+                    <filter string="Prenda" name="group_by_prenda" context="{'group_by':'prenda'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    </data>
+</openerp>
+

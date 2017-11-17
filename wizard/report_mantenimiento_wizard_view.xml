@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_wizard_print_report_mantenimiento" model="ir.ui.view">
+            <field name="name">Reporte de la Gerencia de Mantenimiento del control de lavado industrial</field>
+            <field name="model">wizard.report.mantenimiento</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <group>
+                        <field name="date_presentacion"/>
+                    </group>
+                    <group>
+                        <field name="titulo"/>
+                    </group>
+                    <group>
+                        <field name="precio_kilo"/>
+                    </group>
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <field name="date_inicio"/>
+                        <field name="date_fin"/>
+                    </group>
+                    <footer>
+                        <button name="print_report_mantenimiento" string="Imprimir Mantenimiento" type="object"  class="oe_highlight"  />
+                        o
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_wizard_print_mantenimiento">
+            <field name="name">Imprimir Mantenimiento</field>
+            <field name="res_model">wizard.report.mantenimiento</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_print_report_mantenimiento"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+            id="menu_action_wizard_print_mantenimiento" 
+            action="action_wizard_print_mantenimiento" 
+            parent="andina_lavado_industrial_reportes_view" 
+            groups="andina_industrial.group_name_andina_manager"
+            sequence="2"/>
+
+    </data>
+</openerp>
+

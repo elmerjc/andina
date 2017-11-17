@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <template id="report_controlindustrial">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.andina_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+
+                        <h2>
+                            <span>Control N° </span>
+                            <span t-field="o.name"/>
+                        </h2>
+
+                        
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</data>
+</openerp>

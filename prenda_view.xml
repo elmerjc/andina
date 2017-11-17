@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	  <record id="view_andina_prenda_filter" model="ir.ui.view">
+        <field name="name">andina.prenda.select</field>
+        <field name="model">andina.prenda</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Prenda">
+                <field name="name" string="Descripción" filter_domain="[('name','ilike',self)]"/>
+           </search>
+        </field>
+      </record>
+
+      <record id="andina_prenda_tree" model="ir.ui.view">
+        <field name="name">andina.prenda.tree</field>
+        <field name="model">andina.prenda</field>
+        <field name="arch" type="xml">
+            <tree string="Prenda">
+                <field name="name"/>
+                <field name="detalle"/>
+                <field name="peso"/>
+                <field name="precio"/>
+                <field name="active"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="andina_prenda_form" model="ir.ui.view">
+        <field name="name">andina.prenda.form</field>
+        <field name="model">andina.prenda</field>
+        <field name="arch" type="xml">
+            <form string="Prenda">
+            <sheet string="Prenda">
+                <h1>
+                    <label string="Descripción"/>
+                    <field name="name" class="oe_inline"/>
+                </h1>
+                <group>
+                    <field name="detalle"/>
+                </group> 
+                <group>
+                    <field name="peso"/>
+                    <field name="precio"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+      </record>
+
+      <record id="listar_prenda" model="ir.actions.act_window">
+        <field name="name">Prenda</field>
+        <field name="res_model">andina.prenda</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_andina_prenda_filter"/>
+      </record>
+
+      <menuitem id="prenda_action"  name="Prenda" parent="andina_datos_generales_view" action="listar_prenda" />
+
+    </data>
+</openerp>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	  <record id="view_andina_lavado_industrial_line_filter" model="ir.ui.view">
+        <field name="name">andina.lavado.industrial.line.select</field>
+        <field name="model">andina.lavado.industrial.line</field>
+        <field name="arch" type="xml">
+            <search string="Buscar">
+                <field name="date_recibido_control" string="Fecha Recibido" filter_domain="[('date_recibido_control','ilike',self)]"/>
+                <field name="turno_control" string="Turno" filter_domain="[('turno_control','ilike',self)]"/>
+                <separator/>
+                <group expand="0" string="Agrupar por">
+                  	<filter string="Area Operativa" name="group_by_area_id" context="{'group_by':'area_id'}"/>
+                    <filter string="Turno" name="group_by_turno_control" context="{'group_by':'turno_control'}"/>
+                    <filter string="Fecha Recibido" name="group_by_date_recibido_control" context="{'group_by':'date_recibido_control'}"/>
+                </group>
+           </search>
+        </field>
+      </record>
+
+      <record model="ir.ui.view" id="view_andina_lavado_industrial_line_graph">
+        <field name="name">andina.lavado.industrial.line.graph</field>
+        <field name="model">andina.lavado.industrial.line</field>
+        <field name="arch" type="xml">
+            <graph string="Prendas de los Controles del lavado industrial" type="bar">
+                <field name="name_control"/>
+                <field name="date_recibido_control"/>
+                <field name="turno_control"/>
+                <field name="prenda_id"/>
+                <field name="peso_subtotal" operator="+"/>
+                <field name="precio_subtotal" operator="+"/>
+            </graph>
+        </field>
+      </record>
+
+      <record id="andina_lavado_industrial_line_tree" model="ir.ui.view">
+        <field name="name">andina.lavado.industrial.line.tree</field>
+        <field name="model">andina.lavado.industrial.line</field>
+        <field name="arch" type="xml">
+            <tree string="Controles del lavado industrial">
+                <field name="name_control"/>
+                <field name="date_recibido_control"/>
+                <field name="turno_control"/>
+                <field name="area_id"/>
+                <field name="prenda_id"/>
+                <field name="cantidad" sum="Cantidad Total"/>
+                <field name="peso"/>
+                <field name="precio"/>
+                <field name="peso_subtotal" sum="Peso Total"/>
+                <field name="precio_subtotal" sum="Peso Total"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="listar_lavado_industrial_line" model="ir.actions.act_window">
+        <field name="name">Items Lavado Industrial</field>
+        <field name="res_model">andina.lavado.industrial.line</field>
+        <field name="view_mode">tree,graph</field>
+        <field name="search_view_id" ref="view_andina_lavado_industrial_line_filter"/>
+      </record>
+
+      <menuitem id="andina_lavado_industrial_reportes_view"  name="Reportes" parent="andina_lavado_industrial_menu"/>
+
+      <menuitem id="lavado_industrial_line_action"  name="Prendas Lavado Industrial" parent="andina_lavado_industrial_reportes_view" action="listar_lavado_industrial_line" />
+      
+    </data>
+</openerp>

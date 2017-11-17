@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_wizard_prenda_multiple" model="ir.ui.view">
+            <field name="name">Agregar multiples prendas</field>
+            <field name="model">wizard.prenda.multiple</field>
+            <field name="arch" type="xml">
+                <form string="Agregar prendas">
+                    <sheet string="Control">
+                    <group>
+                        <field name="area_id" options='{"no_open": True,"no_create": 1, "no_create_edit": 1}'/>
+                    </group>
+                    <notebook>
+                        <page name="lavado_lines" string="Prendas del control">
+                            <field name="lavado_line" nolabel="1" widget="one2many_list">
+                                <tree string="Prendas" editable="bottom">
+                                    <field name="prenda_id" on_change="prenda_id_change(prenda_id, context)" options='{"no_open": True,"no_create": 1, "no_create_edit": 1}'/>
+                                    <field name="cantidad"/>
+                                    <field name="precio"/>
+                                    <field name="peso"/>
+                                    <field name="peso_subtotal"/>
+                                    <field name="precio_subtotal"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="add_multiple" type="object" class="oe_highlight" string="Agregar"/>
+                        or 
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_prenda_multiple" model="ir.actions.act_window">
+            <field name="name">Agregar multiples prendas</field>
+            <field name="res_model">wizard.prenda.multiple</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_prenda_multiple"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_wizard_print_report_consolidado" model="ir.ui.view">
+            <field name="name">Consolidado del control de lavado industrial</field>
+            <field name="model">wizard.report.consolidado</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <group>
+                        <field name="date_presentacion"/>
+                    </group>
+                    <group>
+                        <field name="titulo"/>
+                    </group>
+                    <group>
+                        <field name="precio_kilo"/>
+                    </group>
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <field name="date_inicio"/>
+                        <field name="date_fin"/>
+                    </group>
+                    <footer>
+                        <button name="print_report_consolidado" string="Imprimir Consolidado" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_wizard_print_consolidado">
+            <field name="name">Imprimir Consolidado</field>
+            <field name="res_model">wizard.report.consolidado</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_print_report_consolidado"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+            id="menu_action_wizard_print_consolidad" 
+            action="action_wizard_print_consolidado" 
+            parent="andina_lavado_industrial_reportes_view" 
+            groups="andina_industrial.group_name_andina_manager"
+            sequence="2"/>
+
+    </data>
+</openerp>
+

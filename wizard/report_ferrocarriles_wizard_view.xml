@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_wizard_print_report_ferrocarriles" model="ir.ui.view">
+            <field name="name">Reporte de Vagones y Patio Simon del control de lavado industrial</field>
+            <field name="model">wizard.report.ferrocarriles</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <group>
+                        <field name="date_presentacion"/>
+                    </group>
+                    <group>
+                        <field name="titulo"/>
+                    </group>
+                    <group>
+                        <field name="precio_kilo"/>
+                    </group>
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <field name="date_inicio"/>
+                        <field name="date_fin"/>
+                    </group>
+                    <footer>
+                        <button name="print_report_ferrocarriles" string="Imprimir" type="object"  class="oe_highlight"  />
+                        o
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_wizard_print_ferrocarriles">
+            <field name="name">Imprimir Ferrocarriles</field>
+            <field name="res_model">wizard.report.ferrocarriles</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_print_report_ferrocarriles"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+            id="menu_action_wizard_print_ferrocarriles" 
+            action="action_wizard_print_ferrocarriles" 
+            parent="andina_lavado_industrial_reportes_view" 
+            groups="andina_industrial.group_name_andina_manager"
+            sequence="2"/>
+
+    </data>
+</openerp>
+
