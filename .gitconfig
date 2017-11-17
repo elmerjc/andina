@@ -1,0 +1,8 @@
+[user]
+	name = Elmer Cruz
+	email = elmerjc@gmail.com
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+	interactive = auto

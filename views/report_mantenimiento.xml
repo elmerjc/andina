@@ -7,219 +7,422 @@
                 <t t-call="report.andina_layout">
                     <div id="report_andina" class="page">
                         <div class="oe_structure"/>
-                        <h3>
+                        <h3 style="padding-bottom:40px;">
                             <span t-esc="o.titulo"/>
                         </h3>
-                        <table id="table-data">
+                        <table id="table-data" style="page-break-inside:auto;" class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <th colspan="18" style="height:40px;"></th>
-                                </tr>
-                                <tr style="background-color:#F7BE75;">
-                                    <th style="border: 1px solid black;width: 200px;" class="text-center">GERENCIA</th>
-                                    <th style="border: 1px solid black;width: 200px;" class="text-center">AREA OPERATIVA</th>
-                                    <th style="border: 1px solid black;width: 300px;" class="text-center">TIPO DE PRENDAS</th>
-                                    <th style="border: 1px solid black;width: auto;" class="text-center">CANTIDAD</th>
-                                    <th style="border: 1px solid black;width: auto;" class="text-center">KILOS</th>
-                                    <th style="border: 1px solid black;width: 65px;" class="text-center">COSTO KILO</th>
-                                    <th style="border: 1px solid black;width: 105px;" class="text-center">TOTAL S/</th>
-                                </tr>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">GERENCIA</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">AREA OPERATIVA</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: 250px;" class="text-center">TIPO DE PRENDAS</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">CANT.</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">KILOS</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: 55px;" class="text-center">COSTO KILO</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: 105px;" class="text-center">TOTAL S/</th>
                             </thead>
                             <tbody>
                                 <t t-if="get_data_automotriz_puerto()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_automotriz_puerto()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_automotriz_puerto()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_automotriz_puerto()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_automotriz_puerto()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_automotriz_puerto()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_automotriz_puerto()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_automotriz_puerto()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_automotriz_puerto()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_automotriz_puerto()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_casa_cambio()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_casa_cambio()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_casa_cambio()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_casa_cambio()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_casa_cambio()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_casa_cambio()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_casa_cambio()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_casa_cambio()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_casa_cambio()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_casa_cambio()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_carranza()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_carranza()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_carranza()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_carranza()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_carranza()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_carranza()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_carranza()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_carranza()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_carranza()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_carranza()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_mecanica_instrumental()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_mecanica_instrumental()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_mecanica_instrumental()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_mecanica_instrumental()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_mecanica_instrumental()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_mecanica_instrumental()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_mecanica_instrumental()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_mecanica_instrumental()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_mecanica_instrumental()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_mecanica_instrumental()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_electrico_construccion()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_electrico_construccion()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_electrico_construccion()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_electrico_construccion()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_electrico_construccion()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_electrico_construccion()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_electrico_construccion()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_electrico_construccion()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_electrico_construccion()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_electrico_construccion()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_equipo_pesado()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_equipo_pesado()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_equipo_pesado()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_equipo_pesado()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_equipo_pesado()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_equipo_pesado()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_equipo_pesado()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_equipo_pesado()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_equipo_pesado()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_equipo_pesado()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_kamag()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_kamag()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_kamag()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_kamag()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_kamag()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_kamag()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_kamag()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_kamag()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_kamag()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_kamag()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_taller_mecanica()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_taller_mecanica()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">MANTENIMIENTO</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_taller_mecanica()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_taller_mecanica()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_taller_mecanica()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_taller_mecanica()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_taller_mecanica()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_taller_mecanica()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>MANTENIMIENTO</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_taller_mecanica()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_taller_mecanica()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                             </tbody>
                             <tfooter>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td style="border: 1px solid black; background-color:#F7BE75;">TOTALES</td>
-                                        <td style="border: 1px solid black; padding-right: 5px; background-color:#FDCBAF;" class="text-right"><t t-esc="get_sum_totales()[0]"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px; background-color:#FDCBAF;" class="text-right"><t t-esc="'{0:,.3f}'.format(get_sum_totales()[1])"/></td>
-                                        <td colspan="2" style="border: 1px solid black;padding-left: 5px; padding-right: 5px; font-size: 13px; font-weight: bold; background-color:#FDCBAF;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(get_sum_totales()[1] * (o.precio_kilo))"/></td>
-                                    </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                    <td><span /></td>
+                                    <td><span /></td>
+                                    <td style="border: 1px solid black; background-color:#F7BE75;">TOTALES</td>
+                                    <td style="border: 1px solid black; padding-right: 5px; background-color:#FDCBAF;" class="text-right"><t t-esc="get_sum_totales()[0]"/></td>
+                                    <td style="border: 1px solid black; padding-right: 5px; background-color:#FDCBAF;" class="text-right"><t t-esc="'{0:,.3f}'.format(get_sum_totales()[1])"/></td>
+                                    <td colspan="2" style="border: 1px solid black;padding-left: 5px; padding-right: 5px; font-size: 13px; font-weight: bold; background-color:#FDCBAF;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(get_sum_totales()[1] * (o.precio_kilo))"/></td>
+                                </tr>
                             </tfooter>
                         </table>
                         <table>

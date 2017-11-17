@@ -7,138 +7,263 @@
                 <t t-call="report.andina_layout">
                     <div id="report_andina" class="page">
                         <div class="oe_structure"/>
-                        <h3>
+                        <h3 style="padding-bottom:40px;">
                             <span t-esc="o.titulo"/>
                         </h3>
-                        <table id="table-data">
+                        <table id="table-data" style="page-break-inside:auto;" class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <th colspan="18" style="height:40px;"></th>
-                                </tr>
-                                <tr style="background-color:#F7BE75;">
-                                    <th style="border: 1px solid black;width: 200px;" class="text-center">GERENCIA</th>
-                                    <th style="border: 1px solid black;width: 200px;" class="text-center">AREA OPERATIVA</th>
-                                    <th style="border: 1px solid black;width: 300px;" class="text-center">TIPO DE PRENDAS</th>
-                                    <th style="border: 1px solid black;width: auto;" class="text-center">CANTIDAD</th>
-                                    <th style="border: 1px solid black;width: auto;" class="text-center">KILOS</th>
-                                    <th style="border: 1px solid black;width: 65px;" class="text-center">COSTO KILO</th>
-                                    <th style="border: 1px solid black;width: 105px;" class="text-center">TOTAL S/</th>
-                                </tr>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">GERENCIA</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">AREA OPERATIVA</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: 250px;" class="text-center">TIPO DE PRENDAS</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">CANT.</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">KILOS</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: 55px;" class="text-center">COSTO KILO</th>
+                                <th style="background-color:#F7BE75;border: 1px solid black;width: 105px;" class="text-center">TOTAL S/</th>
                             </thead>
                             <tbody>
                                 <t t-if="get_data_anodos()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_anodos()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">OPERACIONES</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_anodos()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_anodos()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_anodos()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_anodos()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_anodos()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_anodos()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>OPERACIONES</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_anodos()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_anodos()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_acidos()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_acidos()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">OPERACIONES</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_acidos()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_acidos()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_acidos()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_acidos()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_acidos()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_acidos()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>OPERACIONES</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_acidos()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_acidos()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_layza()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_layza()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">OPERACIONES</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_layza()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_layza()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_layza()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_layza()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_layza()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_layza()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>OPERACIONES</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_layza()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_layza()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_premin()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_premin()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">OPERACIONES</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_premin()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_premin()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_premin()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_premin()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_premin()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_premin()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>OPERACIONES</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_premin()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_premin()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="get_data_albaniles()">
-                                    <tr>
-                                        <t t-set="num" t-value="len(get_data_albaniles()) + 2"/>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center">OPERACIONES</td>
-                                        <td  t-att-rowspan="num" style="border: 1px solid black;vertical-align: middle;" class="text-center"><span t-esc="get_data_albaniles()[0]['area_operativa']"/></td>
-                                        <t t-foreach="get_data_albaniles()" t-as="data">
-                                            <tr>
-                                                <td style="border: 1px solid black;" class="text-left"><span t-esc="data['prenda']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="data['cantidad_total']"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="o.precio_kilo"/></td>
-                                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right">S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid black;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="get_sum_albaniles()[0]"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right"><span t-esc="'{0:,.3f}'.format(get_sum_albaniles()[1])"/></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                            <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
-                                        </tr>
+                                    <t t-set="num" t-value="len(get_data_albaniles()) + 1"/>
+                                    <t t-set="contador" t-value="0"/>
+                                    <t t-foreach="get_data_albaniles()" t-as="data">
+                                        <t t-set="contador" t-value="contador + 1"/>
+                                        <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                            <t t-if="contador == 1">
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span>OPERACIONES</span>
+                                                </td>
+                                                <td t-att-rowspan="num" class="text-center">
+                                                    <span t-esc="data['area_operativa']"/>
+                                                </td>
+                                            </t>
+                                            <td class="text-left">
+                                                <span t-esc="data['prenda']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="data['cantidad_total']"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="o.precio_kilo"/>
+                                            </td>
+                                            <td class="text-right" style="padding-right: 5px;">
+                                                S/. <span t-esc="'{0:,.3f}'.format(data['kilos_total'] * (o.precio_kilo))"/>
+                                            </td>
+                                        </tr>   
+                                    </t>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                        <td class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="get_sum_albaniles()[0]"/>
+                                        </td>
+                                        <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                            <span t-esc="'{0:,.3f}'.format(get_sum_albaniles()[1])"/>
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
+                                        <td style="padding-right: 5px;" class="text-center">
+                                            <span />
+                                        </td>
                                     </tr>
                                 </t>
                             </tbody>
