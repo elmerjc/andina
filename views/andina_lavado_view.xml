@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_andina_lavado_industrial_search" model="ir.ui.view">
+            <field name="name">andina.lavado.industrial.search</field>
+            <field name="model">andina.lavado.industrial</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Control">
+                    <field name="name" string="Control" filter_domain="[('name','ilike',self)]"/>
+                    <field name="fecha_inicio" string="Fecha Inicio" filter_domain="[('fecha_inicio','ilike',self)]"/>
+                    <field name="fecha_fin" string="Fecha Fin" filter_domain="[('fecha_fin','ilike',self)]"/>
+                    <field name="area_id" string="Area" filter_domain="[('area_id','ilike',self)]"/>
+                    <field name="gerencia_id" string="Gerencia" filter_domain="[('gerencia_id','ilike',self)]"/>
+                    <group expand="0" string="Agrupar por">
+                        <filter string="Área" name="group_by_area_id" context="{'group_by':'area_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="view_andina_lavado_industrial_tree" model="ir.ui.view">
+            <field name="name">andina.lavado.industrial.tree</field>
+            <field name="model">andina.lavado.industrial</field>
+            <field name="arch" type="xml">
+                <tree string="Controles del lavado industrial">
+                    <field name="name"/>
+                    <field name="area_id"/>
+                    <field name="gerencia_id" optional="hide"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                    <field name="precio_kilo"/>
+                    <field name="cantidad_total" sum="Cantidad Total"/>
+                    <field name="peso_total" sum="Peso Total"/>
+                    <field name="precio_total" sum="Peso Total"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_andina_lavado_industrial_line_tree" model="ir.ui.view">
+            <field name="name">andina.lavado.industrial.line.tree</field>
+            <field name="model">andina.lavado.industrial.line</field>
+            <field name="arch" type="xml">
+                <tree default_order="fecha" editable="top" string="Detalle del Control" class="andina_treeview">
+                    <field name="sequence" invisible="1"/>
+                    <field name="fecha"/>
+                    <field name="is_editable" invisible="1"/>
+                    <field name="p1a" string="CAPUCHON-CHOMPA"/>
+                    <field name="p1b" string=" "/>
+                    <field name="p1c" string=" "/>
+                    <field name="p2a" string="CASACA CORTA"/>
+                    <field name="p2b" string=" "/>
+                    <field name="p2c" string=" "/>
+                    <field name="p3a" string="CASACA CUERO"/>
+                    <field name="p3b" string=" "/>
+                    <field name="p3c" string=" "/>
+                    <field name="p4a" string="CASACA DE LONA"/>
+                    <field name="p4b" string=" "/>
+                    <field name="p4c" string=" "/>
+                    <field name="p5a" string="CHALECO DE SEGURIDAD"/>
+                    <field name="p5b" string=" "/>
+                    <field name="p5c" string=" "/>
+                    <field name="p6a" string="ESCARPI NES"/>
+                    <field name="p6b" string=" "/>
+                    <field name="p6c" string=" "/>
+                    <field name="p7a" string="MAME LUCO"/>
+                    <field name="p7b" string=" "/>
+                    <field name="p7c" string=" "/>
+                    <field name="p8a" string="MANDILES CON BSP"/>
+                    <field name="p8b" string=" "/>
+                    <field name="p8c" string=" "/>
+                    <field name="p9a" string="MANDILES CON HP"/>
+                    <field name="p9b" string=" "/>
+                    <field name="p9c" string=" "/>
+                    <field name="p10a" string="MANDILES CON HS"/>
+                    <field name="p10b" string=" "/>
+                    <field name="p10c" string=" "/>
+                    <field name="p11a" string="MANDILES LONA CUERO"/>
+                    <field name="p11b" string=" "/>
+                    <field name="p11c" string=" "/>
+                    <field name="p12a" string="PANTALON DE CUERO"/>
+                    <field name="p12b" string=" "/>
+                    <field name="p12c" string=" "/>
+                    <field name="p13a" string="PANTALON DE LONA"/>
+                    <field name="p13b" string=" "/>
+                    <field name="p13c" string=" "/>
+                    <field name="p14a" string="CASACA Y PANT. IMP."/>
+                    <field name="p14b" string=" "/>
+                    <field name="p14c" string=" "/>
+                    <field name="p15a" string="GUANTES CUERO PANT."/>
+                    <field name="p15b" string=" "/>
+                    <field name="p15c" string=" "/>
+                    <field name="p16a" string="CAMISA PANTALON"/>
+                    <field name="p16b" string=" "/>
+                    <field name="p16c" string=" "/>
+                    <field name="peso_subtotal" string="Peso" 
+                        attrs="{'readonly': [('state', '!=', 'confirm')]}"
+                        width="0.5"/>
+                    <field name="lavado_id" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_andina_lavado_industrial_form" model="ir.ui.view">
+            <field name="name">andina.lavado.industrial.form</field>
+            <field name="model">andina.lavado.industrial</field>
+            <field name="arch" type="xml">
+                <form string="Control del lavado por Área">
+                <header>
+                    <button name="action_start" states="open" string="Crear fechas" type="object" class="oe_highlight"/>
+                    <button name="action_open" type="object" string="Abrir" attrs="{'invisible':[('state', '!=', 'cancel')]}" groups="base.group_user"/>
+                    <button name="action_cancel" type="object" string="Cancelar" attrs="{'invisible':[('state', '=', 'cancel')]}" groups="base.group_user"/>
+                    <button name="action_close" type="object" string="Cerrar" attrs="{'invisible':[('state','=','close')]}" groups="base.group_user"/>
+                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="open,confirm,done,cancel" statusbar_colors='{"cancel":"red"}'/>
+                </header>
+                <sheet>
+                    <field name="lavado_line" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button string="Detalle" type="object"
+                                name="action_ver_detalle"
+                                class="oe_stat_button" icon="fa-exchange"
+                                attrs="{'invisible': [('state', '=', 'open')]}"/>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" string="N° Control" class="oe_edit_only"/>
+                        <h1><field name="name" readonly="1" class="oe_inline"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="area_id"/>
+                            <field name="gerencia_id"/>
+                            <field name="cobrar_por"/>
+                            <field name="precio_kilo"/>
+                            <field name="peso_total"/>
+                            <field name="cantidad_total"/>
+                        </group>
+                        <group>
+                            <field name="is_parada"/>
+                            <field name="fecha_inicio"/>
+                            <field name="fecha_fin"/>
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_andina_lavado_industrial" model="ir.actions.act_window">
+            <field name="name">Lavado Industrial</field>
+            <field name="res_model">andina.lavado.industrial</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_andina_lavado_industrial_tree"/>
+            <field name="search_view_id" ref="view_andina_lavado_industrial_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                Crear un nuevo control
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_andina_lavado_industrial" 
+            name="Lavado Industrial" 
+            parent="menu_andina_controles_lavado" 
+            action="action_andina_lavado_industrial" />
+
+    </data>
+</odoo>

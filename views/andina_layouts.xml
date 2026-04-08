@@ -1,31 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
-  <template id="report.andina_layout">
-      <t t-call="report.andina_layout_header"/>
-      <t t-raw="0"/>
-      <t t-call="report.andina_layout_footer"/>
-  </template>
-
-  <template id="report.andina_layout_header">
-      <div class="header">
-        <div class="row text-left">
-          <div class="col-xs-6">
-           <img height="120px" src="/andina_industrial/static/src/img/logo.png"/>
-          </div>
-        </div>
-        <!--<div style="margin:10px 0;border-top: 1px solid black;"/>-->
+<odoo>
+  <template id="andina_layout">
+      <div class="article">
+        <t t-call="arc_andina.andina_layout_header"/>
+        <t t-raw="0"/>
+        <t t-call="arc_andina.andina_layout_footer"/>
       </div>
   </template>
 
-  <template id="report.andina_layout_footer">
+  <template id="andina_layout_header">
+      <div class="header">
+        <div class="row">
+          <div class="col-5 text-left">
+           <img src="/arc_andina/static/src/img/logo.jpg" style="width:100%"/>
+          </div>
+          <div class="col-7 text-right">
+            <small>CALLE LAS GARDENIAS MZ. F LT. 01 - URB. CESAR VALLEJO</small><br/>
+            <small>PACOCHA - ILO - MOQUEGUA - PERÚ</small><br/>
+            <small>Telf.: (053) 491554, Celu.: 953933970, 953682842, 953682852</small><br/>
+            <small>Emails: andina_tacna@hotmail.com, andina_aqp@hotmail.com</small><br/>
+          </div>
+        </div>
+      </div>
+  </template>
+
+  <template id="andina_layout_footer">
       <div class="footer">
         <div class="row text-center">
-            <div class="col-xs-12">
+            <div class="col-12">
               
             </div>
         </div>
       </div>
   </template>
-</data>
-</openerp>
+
+  <template id="southercopper_layout">
+      <div class="article">
+        <t t-call="arc_andina.southercopper_layout_header"/>
+        <t t-raw="0"/>
+        <t t-call="arc_andina.andina_layout_footer"/>
+      </div>
+  </template>
+
+  <template id="southercopper_layout_header">
+      <div class="header">
+        <div class="row">
+          <div class="col-3 text-left">
+           <img src="/arc_andina/static/src/img/southercopper.jpg" style="width:100%"/>
+          </div>
+          <div class="col-9 text-right">
+          </div>
+        </div>
+      </div>
+  </template>
+</odoo>

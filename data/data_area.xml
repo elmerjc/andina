@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Gerencias -->
+        <record id="gerencia_1" model="andina.gerencia">
+            <field name="name">OPERACIONES</field>
+        </record>
+        <record id="gerencia_2" model="andina.gerencia">
+            <field name="name">MANTENIMIENTO</field>
+        </record>
+        <record id="gerencia_3" model="andina.gerencia">
+            <field name="name">FERROCARRILES</field>
+        </record>
+        <!-- Areas Operativas -->
+        <record id="area_1" model="andina.area">
+            <field name="name">AREA MANTENIMIENTO PLANTAS - TALLER DE REFRACTARIOS (ALBAÑILES)</field>
+            <field name="gerencia_id" ref="gerencia_1"/>
+        </record>
+        <record id="area_2" model="andina.area">
+            <field name="name">HORNO ISA</field>
+            <field name="gerencia_id" ref="gerencia_1"/>
+        </record>
+        <record id="area_3" model="andina.area">
+            <field name="name">OFICINA DEL LIDER EQUIPO DE PROCESO (PARADERO DE BUSES)</field>
+            <field name="gerencia_id" ref="gerencia_1"/>
+        </record>
+        <record id="area_4" model="andina.area">
+            <field name="name">PLANTA DE AFINO Y MOLDEO</field>
+            <field name="gerencia_id" ref="gerencia_1"/>
+        </record>
+        <record id="area_4" model="andina.area">
+            <field name="name">PREMIN</field>
+            <field name="gerencia_id" ref="gerencia_1"/>
+        </record>
+        <record id="area_5" model="andina.area">
+            <field name="name">AUTOMOTRIZ PUERTO</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_6" model="andina.area">
+            <field name="name">CASA CAMBIO</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_7" model="andina.area">
+            <field name="name">TALLER CONSTRUCCION (CARRANZA)</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_8" model="andina.area">
+            <field name="name">TALLER DE INSTRUMENTACION</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_9" model="andina.area">
+            <field name="name">TALLER ELECTRICO FUNDICION</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_10" model="andina.area">
+            <field name="name">TALLER EQUIPO PESADO FUNDICION</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_11" model="andina.area">
+            <field name="name">TALLER KAMAG</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_12" model="andina.area">
+            <field name="name">TALLER MECANICA 3 (PELICANOS)</field>
+            <field name="gerencia_id" ref="gerencia_2"/>
+        </record>
+        <record id="area_13" model="andina.area">
+            <field name="name">PATIO SIMON</field>
+            <field name="gerencia_id" ref="gerencia_3"/>
+        </record>
+        <record id="area_14" model="andina.area">
+            <field name="name">VAGONES</field>
+            <field name="gerencia_id" ref="gerencia_3"/>
+        </record>
+        <record id="area_15" model="andina.area">
+            <field name="name">TRENES</field>
+            <field name="gerencia_id" ref="gerencia_3"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="andina_report_area_form" model="ir.ui.view">
+            <field name="name">andina.report.area.form</field>
+            <field name="model">andina.report.area</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="gerencia_id" options="{'no_create_edit': True}"/>
+                        <field name="area_id" domain="[('gerencia_id', '=', gerencia_id)]" options="{'no_create_edit': True}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_presentacion"/>
+                        </group>
+                        <group>
+                            <field name="turno"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="titulo"/>
+                        <!-- <field name="print_persona"/> -->
+                    </group>
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <group>
+                            <field name="fecha_inicio"/>
+                        </group>
+                        <group>
+                            <field name="fecha_fin"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Generar reporte" type="object"  class="oe_highlight"  />
+                        o
+                        <button string="Cancelar" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_report_area" model="ir.actions.act_window">
+            <field name="name">Por Area</field>
+            <field name="res_model">andina.report.area</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="andina_report_area_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+            id="menu_action_report_area" 
+            action="action_report_area" 
+            parent="menu_andina_reportes" 
+            groups="arc_andina.group_andina_manager" 
+            sequence="5"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="report.paperformat" id="paperformat_andina_report">
+        <field name="name">Formato de Andina</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_height">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record model="report.paperformat" id="paperformat_andina_report_landscape">
+        <field name="name">Formato de Andina</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_height">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">40</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report 
+        id="report_cantidades_action"
+        string="Detalle de factura"
+        model="andina.report.cantidades"
+        report_type = "qweb-pdf"
+        file="arc_andina.andina_report_cantidades_view"
+        name="arc_andina.andina_report_cantidades_view"
+        print_report_name="'Reporte detallado %s' % (object.date_inicio)"
+        paperformat="paperformat_andina_report"
+        menu="False"
+    />
+
+    <report 
+        id="report_consolidado_action"
+        string="Reporte consolidado"
+        model="andina.report.consolidado"
+        report_type = "qweb-pdf"
+        file="arc_andina.andina_report_consolidado_view"
+        name="arc_andina.andina_report_consolidado_view"
+        print_report_name="'Reporte consolidado %s' % (object.date_inicio)"
+        paperformat="paperformat_andina_report"
+        menu="False"
+    />
+
+    <report 
+        id="report_gerencia_action"
+        string="Reporte por gerencia"
+        model="andina.report.gerencia"
+        report_type = "qweb-pdf"
+        file="arc_andina.andina_report_gerencia_view"
+        name="arc_andina.andina_report_gerencia_view"
+        print_report_name="'Reporte por Gerencia %s' % (object.turno)"
+        paperformat="paperformat_andina_report"
+        menu="False"
+    />
+
+    <report 
+        id="report_area_action"
+        string="Reporte por area"
+        model="andina.report.area"
+        report_type = "qweb-pdf"
+        file="arc_andina.andina_report_area_view"
+        name="arc_andina.andina_report_area_view"
+        print_report_name="'Reporte por Area %s' % (object.date_inicio)"
+        paperformat="paperformat_andina_report"
+        menu="False"
+    />
+</odoo>

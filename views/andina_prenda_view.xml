@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="view_andina_prenda_search" model="ir.ui.view">
+        <field name="name">andina.prenda.search</field>
+        <field name="model">andina.prenda</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Prenda">
+                <field name="name" string="Descripción" filter_domain="[('name','ilike',self)]"/>
+           </search>
+        </field>
+      </record>
+
+      <record id="view_andina_prenda_tree" model="ir.ui.view">
+        <field name="name">andina.prenda.tree</field>
+        <field name="model">andina.prenda</field>
+        <field name="arch" type="xml">
+            <tree string="Prenda">
+                <field name="name"/>
+                <field name="detalle"/>
+                <field name="peso"/>
+                <field name="precio"/>
+                <field name="active"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_andina_prenda_form" model="ir.ui.view">
+        <field name="name">andina.prenda.form</field>
+        <field name="model">andina.prenda</field>
+        <field name="arch" type="xml">
+            <form string="Prenda">
+            <sheet string="Prenda">
+                <h1>
+                    <label string="Descripción"/>
+                    <field name="name" class="oe_inline"/>
+                </h1>
+                <group>
+                    <field name="detalle"/>
+                </group> 
+                <group>
+                    <field name="peso"/>
+                    <field name="precio"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+      </record>
+
+      <record id="action_andina_prenda" model="ir.actions.act_window">
+        <field name="name">Prendas</field>
+        <field name="res_model">andina.prenda</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_andina_prenda_search"/>
+      </record>
+
+      <menuitem name="Prendas" id="menu_andina_prenda" 
+        parent="menu_andina_datos_generales" 
+        action="action_andina_prenda" />
+
+    </data>
+</odoo>

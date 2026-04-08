@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="andina_report_gerencia_view">
+        <t t-call="web.html_container">
+            <t t-call="arc_andina.andina_layout">
+                <div class="page">
+                    <header>
+                        <h4 class="text-center">
+                            <span t-esc="titulo"/>
+                        </h4>
+                    </header>
+                    <table id="table-data" class="mt-4">
+                        <thead>
+                            <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">AREA OPERATIVA</th>
+                            <th style="background-color:#F7BE75;border: 1px solid black;width: 250px;" class="text-center">TIPO DE PRENDAS</th>
+                            <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">CANT.</th>
+                            <th style="background-color:#F7BE75;border: 1px solid black;width: auto;" class="text-center">KILOS</th>
+                            <th style="background-color:#F7BE75;border: 1px solid black;width: 55px;" class="text-center">COSTO KILO</th>
+                            <th style="background-color:#F7BE75;border: 1px solid black;width: 105px;" class="text-center">TOTAL S/</th>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="areas" t-as="area">
+                                <t t-set="num" t-value="len(get_data_area(fecha_inicio, fecha_fin, turno, area['id'])) + 1"/>
+                                <t t-set="contador" t-value="0"/>
+                                <t t-foreach="get_data_area(fecha_inicio, fecha_fin, turno, area['id'])" t-as="data">
+                                    <t t-set="contador" t-value="contador + 1"/>
+                                    <tr t-attf-class="{{ '' if data['p1'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'CAPUCHON-CHOMPA'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p1']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso1'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso1'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p2'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'CASACA CORTA'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p2']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso2'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso2'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p3'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'CASACA CUERO (SOLDADOR)'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p3']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso3'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso3'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p4'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'CASACA DE LONA'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p4']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso4'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso4'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p5'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'CHALECO DE SEGURIDAD'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p5']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso5'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso5'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p6'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'ESCARPINES'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p6']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso6'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso6'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p7'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'MAMELUCO'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p7']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso7'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso7'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p8'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'MANDILES CON BROCHES SIN PERCHERA'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p8']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso8'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso8'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p9'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'MANDILES CON HEBILLA Y PERCHERA'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p9']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso9'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso9'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p10'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'MANDILES CON HEBILLA SIN PERCHERA'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p10']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso10'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso10'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p11'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'MANDILES LONA CUERO'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p11']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso11'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso11'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p12'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'PANTALONES DE CUERO (SOLDADOR)'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p12']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso12'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso12'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p13'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'PANTALON DE LONA'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p13']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso13'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso13'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p14'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p14']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso14'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso14'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p15'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'GUANTES CUERO PANTUFLAS GORRO'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p15']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso15'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso15'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-attf-class="{{ '' if data['p16'] &gt; 0 else 'd-none' }}" style="page-break-inside:avoid; page-break-after:auto;">
+                                        <t t-if="contador == 1">
+                                            <td t-att-rowspan="num" class="text-center">
+                                                <span t-esc="data['area_operativa']"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-left">
+                                            <span t-esc="'GUANTES CUERO PANTUFLAS GORRO'"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="data['p16']"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            <span t-esc="'{0:,.3f}'.format(data['peso16'])"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="precio_kilo"/>
+                                        </td>
+                                        <td class="text-right" style="padding-right: 5px;">
+                                            S/ <span t-esc="'{0:,.3f}'.format(data['peso16'] * precio_kilo)"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                    <td class="text-center">
+                                        <span />
+                                    </td>
+                                    <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                        <span t-esc="get_sum_area(fecha_inicio, fecha_fin, turno, area['id'])[0]"/>
+                                    </td>
+                                    <td style="padding-right: 5px;background-color:#FDCBAF;" class="text-right">
+                                        <span t-esc="get_sum_area(fecha_inicio, fecha_fin, turno, area['id'])[1]"/>
+                                    </td>
+                                    <td style="padding-right: 5px;" class="text-center">
+                                        <span />
+                                    </td>
+                                    <td style="padding-right: 5px;" class="text-center">
+                                        <span />
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfooter>
+                            <tr style="page-break-inside:avoid; page-break-after:auto;">
+                                <td><span /></td>
+                                <td style="border: 1px solid black; background-color:#F7BE75;">TOTALES</td>
+                                <td style="border: 1px solid black; padding-right: 5px; background-color:#FDCBAF;" class="text-right"><t t-esc="sum_totales[0]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px; background-color:#FDCBAF;" class="text-right"><t t-esc="sum_totales[1]"/></td>
+                                <td colspan="2" style="border: 1px solid black;padding-left: 5px; padding-right: 5px; font-size: 13px; font-weight: bold; background-color:#FDCBAF;" class="text-right">S/ <span t-esc="(sum_totales[1] or 1) * (precio_kilo)"/></td>
+                            </tr>
+                        </tfooter>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>ILO, <span t-esc="date_presentacion"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

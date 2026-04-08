@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="andina_report_area_view">
+        <t t-call="web.html_container">
+            <t t-call="arc_andina.southercopper_layout">
+                <div class="page">
+                    <header>
+                        <h4 class="text-center">
+                            <span t-esc="titulo"/>
+                        </h4>
+                    </header>
+                    <table class="table-data">
+                        <thead>
+                            <tr style="background-color:#A4D09D;">
+                                <td style="border: 1px solid black;width: 90px;vertical-align:middle;" class="text-center">FECHA</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">CAPUCHON-CHOMPA</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">CASACA CORTA</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">CASACA CUERO (SOLDADOR)</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">CASACA DE LONA</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">CHALECO</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">ESCARPINES</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">MAMELUCO</td>
+                                <td style="border: 1px solid black;width: 30px; font-size: 10px;" class="vertical-text">MANDILES CON BRO. SIN PER.</td>
+                                <td style="border: 1px solid black;width: 30px; font-size: 10px;" class="vertical-text">MANDILES CON HEB. CON PER.</td>
+                                <td style="border: 1px solid black;width: 30px; font-size: 10px;" class="vertical-text">MANDILES CON HEB. SIN PER.</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">MANDILES LONA CUERO</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">PANTALONES DE CUERO (SOLDADOR)</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">CAMISA PANTALON</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">PANTALON DE LONA</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">GUANTES CUERO PANTUFLAS GORROS</td>
+                                <td style="border: 1px solid black;width: 30px;" class="vertical-text">SUBTOTAL PIEZAS</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-if="len(data_area) > 0">
+                            <tr t-foreach="data_area" t-as="li">
+                                <td style="border-bottom:1pt solid black;">
+                                    <span t-esc="li['fecha']" t-field-options='{"format": "MM/dd/yyyy"}'/>
+                                </td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p1']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p2']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p3']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p4']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p5']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p6']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p7']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p8']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p9']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p10']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p11']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p12']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p16']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p13']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p14']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p15']"/></td>
+                                <td style="border-bottom:1pt solid black; padding-right: 2px;" class="text-center">
+                                    <span t-esc="li['subtotal']"/>
+                                </td>
+                            </tr>
+                            </t>
+                            <t t-else="">
+                            <tr>
+                                <td colspan="18">No hay datos para el filtro seleccionado.</td>
+                            </tr>
+                            </t>
+                        </tbody>
+                        <tfooter>
+                            <tr>
+                                <td colspan="14"></td>
+                                <td colspan="3"><strong>TOTAL PIEZAS</strong></td>
+                                <td class="text-center"><t t-esc="int(sum_totales[0] or 0)"/></td>
+                            </tr>
+                        </tfooter>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>ILO, <span t-esc="date_presentacion"/></td>
+                        </tr>
+                    </table>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

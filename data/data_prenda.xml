@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="14" model="andina.prenda">
+            <field name="id">14</field>
+            <field name="name">CAPUCHON-CHOMPA</field>
+            <field name="peso">1.100</field>
+        </record>
+        <record id="15" model="andina.prenda">
+            <field name="id">15</field>
+            <field name="name">CASACA CORTA</field>
+            <field name="peso">0.870</field>
+        </record>
+        <record id="16" model="andina.prenda">
+            <field name="id">16</field>
+            <field name="name">CASACA CUERO (SOLDADOR)</field>
+            <field name="peso">2.00</field>
+        </record>
+        <record id="17" model="andina.prenda">
+            <field name="id">17</field>
+            <field name="name">CASACA DE LONA</field>
+            <field name="peso">0.980</field>
+        </record>
+        <record id="18" model="andina.prenda">
+            <field name="id">18</field>
+            <field name="name">CHALECO DE SEGURIDAD</field>
+            <field name="peso">0.750</field>
+        </record>
+        <record id="19" model="andina.prenda">
+            <field name="id">19</field>
+            <field name="name">ESCARPINES</field>
+            <field name="peso">0.450</field>
+        </record>
+        <record id="20" model="andina.prenda">
+            <field name="id">20</field>
+            <field name="name">MAMELUCO</field>
+            <field name="peso">1.500</field>
+        </record>
+        <record id="21" model="andina.prenda">
+            <field name="id">21</field>
+            <field name="name">MANDILES CON BROCHES SIN PERCHERA</field>
+            <field name="peso">0.800</field>
+        </record>
+        <record id="22" model="andina.prenda">
+            <field name="id">22</field>
+            <field name="name">MANDILES CON HEBILLA Y PERCHERA</field>
+            <field name="peso">0.758</field>
+        </record>
+        <record id="23" model="andina.prenda">
+            <field name="id">23</field>
+            <field name="name">MANDILES CON HEBILLA SIN PERCHERA</field>
+            <field name="peso">0.617</field>
+        </record>
+        <record id="24" model="andina.prenda">
+            <field name="id">24</field>
+            <field name="name">MANDILES LONA CUERO</field>
+            <field name="peso">0.900</field>
+        </record>
+        <record id="25" model="andina.prenda">
+            <field name="id">25</field>
+            <field name="name">PANTALONES DE CUERO (SOLDADOR)</field>
+            <field name="peso">2.00</field>
+        </record>
+        <record id="26" model="andina.prenda">
+            <field name="id">26</field>
+            <field name="name">PANTALON DE LONA</field>
+            <field name="peso">0.869</field>
+        </record>
+        <record id="27" model="andina.prenda">
+            <field name="id">27</field>
+            <field name="name">CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)</field>
+            <field name="peso">1.500</field>
+        </record>
+        <record id="28" model="andina.prenda">
+            <field name="id">28</field>
+            <field name="name">GUANTES CUERO PANTUFLAS GORRO</field>
+            <field name="peso">0.100</field>
+        </record>
+        <record id="33" model="andina.prenda">
+            <field name="id">33</field>
+            <field name="name">CAMISA PANTALON</field>
+            <field name="peso">0.750</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_andina_area_search" model="ir.ui.view">
+        <field name="name">andina.area.search</field>
+        <field name="model">andina.area</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Area Operativa">
+                <field name="name" string="Descripción" filter_domain="[('name','ilike',self)]"/>
+           </search>
+        </field>
+    </record>
+
+    <record id="view_andina_area_tree" model="ir.ui.view">
+        <field name="name">andina.area.tree</field>
+        <field name="model">andina.area</field>
+        <field name="arch" type="xml">
+            <tree string="Area Operativa" create="0" edit="0">
+                <field name="gerencia_id"/>
+                <field name="name"/>
+                <field name="descripcion"/>
+                <field name="tipo"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_andina_area_form" model="ir.ui.view">
+        <field name="name">andina.area.form</field>
+        <field name="model">andina.area</field>
+        <field name="arch" type="xml">
+            <form string="Area Operativa" create="0" edit="0">
+                <header>
+                
+                </header>
+                <sheet>
+                    <h1>
+                        <label for="name" string="Descripción"/>
+                        <field name="name" class="oe_inline"/>
+                    </h1>
+                    <group>
+                        <field name="descripcion"/>
+                        <field name="tipo"/>
+                        <field name="gerencia_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_andina_area" model="ir.actions.act_window">
+        <field name="name">Areas Operativas</field>
+        <field name="res_model">andina.area</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_andina_area_search"/>
+    </record>
+
+    <menuitem name="Areas Operativas" id="menu_andina_area" 
+        parent="menu_andina_datos_generales" 
+        action="action_andina_area" />
+</odoo>

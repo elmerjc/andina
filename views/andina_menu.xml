@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- Top menu item -->
+    
+    <menuitem name="Andina" id="menu_andina" sequence="11"/>
+    
+    <!-- Menus -->
+    <menuitem name="Controles" id="menu_andina_controles_lavado" 
+      parent="menu_andina" 
+      sequence="10"/>
+    <menuitem name="Datos Generales" id="menu_andina_datos_generales" 
+      parent="menu_andina" 
+      groups="arc_andina.group_andina_user"/>
+    <menuitem name="Reportes" id="menu_andina_reportes" 
+      parent="menu_andina" 
+      groups="arc_andina.group_andina_manager"/>
+
+  </data>
+</odoo>

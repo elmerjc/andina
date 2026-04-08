@@ -1,25 +1,117 @@
-.vertical-text {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    transform: rotate(-90deg);
+/*.andina_treeview table tbody tr.active-row {
+    font-weight: bold;
+    color: #3C62F0;
+}
+.andina_treeview table tbody tr.last-of-type {
+    border-bottom: 2px solid #3C62F0;
+}
+.andina_treeview table tbody tr:nth-of-type(even) {
+    background-color: #A9B0CA;
+}
+.andina_treeview table tbody tr {
+    border-bottom: 1px solid #ddd;
+}*/
+.andina_treeview table thead {
+    position: sticky;
+    top: 0px;
+    left: 5px;
+    right: 5px;
+    z-index: 2;
+    border-collapse: collapse !important;
+}
+.andina_treeview table thead > tr > th {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
  
-    -webkit-transform-origin: 50% 50%;
+    /*-webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
     -ms-transform-origin: 50% 50%;
     -o-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
+    transform-origin: 50% 50%;*/
 
-    text-align: center;
-    vertical-align: middle;
-    font-size: 12px;
-    height: 200px;
+    /*text-align: center !important;*/
+    vertical-align: middle !important;
+    font-size: 12px !important;
+    height: 100px !important;
+    width: 5% !important;
+    border: 0px !important;
+    white-space: normal !important;
+    overflow: initial !important;
 }
-#report_andina > h3 {
-    text-align: center;
+.andina_treeview table thead > tr > th:nth-child(3),
+.andina_treeview table thead > tr > th:nth-child(6),
+.andina_treeview table thead > tr > th:nth-child(9),
+.andina_treeview table thead > tr > th:nth-child(12),
+.andina_treeview table thead > tr > th:nth-child(15),
+.andina_treeview table thead > tr > th:nth-child(18),
+.andina_treeview table thead > tr > th:nth-child(21),
+.andina_treeview table thead > tr > th:nth-child(24),
+.andina_treeview table thead > tr > th:nth-child(27),
+.andina_treeview table thead > tr > th:nth-child(30),
+.andina_treeview table thead > tr > th:nth-child(33),
+.andina_treeview table thead > tr > th:nth-child(36),
+.andina_treeview table thead > tr > th:nth-child(39),
+.andina_treeview table thead > tr > th:nth-child(42),
+.andina_treeview table thead > tr > th:nth-child(45),
+.andina_treeview table thead > tr > th:nth-child(48) {
+    border-bottom: 2px solid #5494FF !important;
+}
+.andina_treeview table thead > tr > th:nth-child(4),
+.andina_treeview table thead > tr > th:nth-child(7),
+.andina_treeview table thead > tr > th:nth-child(10),
+.andina_treeview table thead > tr > th:nth-child(13),
+.andina_treeview table thead > tr > th:nth-child(16),
+.andina_treeview table thead > tr > th:nth-child(19),
+.andina_treeview table thead > tr > th:nth-child(22),
+.andina_treeview table thead > tr > th:nth-child(25),
+.andina_treeview table thead > tr > th:nth-child(28),
+.andina_treeview table thead > tr > th:nth-child(31),
+.andina_treeview table thead > tr > th:nth-child(34),
+.andina_treeview table thead > tr > th:nth-child(37),
+.andina_treeview table thead > tr > th:nth-child(40),
+.andina_treeview table thead > tr > th:nth-child(43),
+.andina_treeview table thead > tr > th:nth-child(46),
+.andina_treeview table thead > tr > th:nth-child(49) {
+    border-bottom: 2px solid #FF0000 !important;
+}
+.andina_treeview table thead > tr > th:nth-child(5),
+.andina_treeview table thead > tr > th:nth-child(8),
+.andina_treeview table thead > tr > th:nth-child(11),
+.andina_treeview table thead > tr > th:nth-child(14),
+.andina_treeview table thead > tr > th:nth-child(17),
+.andina_treeview table thead > tr > th:nth-child(20),
+.andina_treeview table thead > tr > th:nth-child(23),
+.andina_treeview table thead > tr > th:nth-child(26),
+.andina_treeview table thead > tr > th:nth-child(29),
+.andina_treeview table thead > tr > th:nth-child(32),
+.andina_treeview table thead > tr > th:nth-child(35),
+.andina_treeview table thead > tr > th:nth-child(38),
+.andina_treeview table thead > tr > th:nth-child(41),
+.andina_treeview table thead > tr > th:nth-child(44),
+.andina_treeview table thead > tr > th:nth-child(47),
+.andina_treeview table thead > tr > th:nth-child(50) {
+    border-bottom: 2px solid #FFD015 !important;
+}
+.andina_treeview table thead > tr > th:nth-child(1){
+    width: 38px !important;
+}
+.andina_treeview table thead > tr > th:nth-child(2){
+    background-color: #eee !important;
+    border-bottom: 0px solid #000 !important;
+    vertical-align: middle !important;
+    transform: rotate(0deg) !important;
+    width: 92px !important;
+}
+.andina_treeview table thead > tr > th:nth-child(51){
+    background-color: #eee !important;
+    vertical-align: middle !important;
+    transform: rotate(0deg) !important;
+    width: 60px !important;
 }
 
-table tr.page-break{
-	page-break-after:always
-} 
+.andina_treeview table tbody tr > td {
+    text-align: center !important;
+}

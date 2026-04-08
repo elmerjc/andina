@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="andina_report_cantidades_form" model="ir.ui.view">
+            <field name="name">andina.report.cantidades.form</field>
+            <field name="model">andina.report.cantidades</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <p class="oe_gray">
+                        Elegir la gerencia o dejarla en blanco para mostrar todas las gerencias
+                    </p>
+                    <group>
+                        <group>
+                            <field name="gerencia_id" options="{'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                            <field name="turno"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_presentacion"/>
+                        </group>
+                        <group>
+                            <field name="precio_kilo"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="titulo"/>
+                    </group>
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <group>
+                            <field name="date_inicio"/>
+                        </group>
+                        <group>
+                            <field name="date_fin"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Generar reporte" type="object"  class="oe_highlight"  />
+                        o
+                        <button string="Cancelar" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_report_cantidades" model="ir.actions.act_window">
+            <field name="name">Detalle de factura</field>
+            <field name="res_model">andina.report.cantidades</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="andina_report_cantidades_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+            id="menu_action_report_cantidades" 
+            action="action_report_cantidades" 
+            parent="menu_andina_reportes" 
+            groups="arc_andina.group_andina_manager"
+            sequence="2"/>
+
+    </data>
+</odoo>
+

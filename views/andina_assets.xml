@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend_andina" name="andina assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link href="/arc_andina/static/src/css/style.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+
+    <template id="assets_common_andina" name="andina report assets" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+             <link href="/arc_andina/static/src/css/report_style.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+</odoo>

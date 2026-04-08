@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="andina_report_gerencia_form" model="ir.ui.view">
+            <field name="name">andina.report.gerencia.form</field>
+            <field name="model">andina.report.gerencia</field>
+            <field name="arch" type="xml">
+                <form string="Elegir el rango de fecha">
+                    <group>
+                        <group>
+                            <field name="date_presentacion"/>
+                        </group>
+                        <group>
+                            <field name="turno"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="titulo"/>
+                    </group>
+                    <group>
+                        <field name="gerencia_id"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="precio_kilo"/>
+                        </group>
+                        <group>
+                            
+                        </group>
+                    </group>
+                    <p class="oe_gray">
+                        Elegir el rango de fecha
+                    </p>
+                    <group>
+                        <group>
+                            <field name="fecha_inicio"/>
+                        </group>
+                        <group>
+                            <field name="fecha_fin"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Generar reporte" type="object"  class="oe_highlight"  />
+                        o
+                        <button string="Cancelar" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_report_gerencia" model="ir.actions.act_window">
+            <field name="name">Por Gerencia</field>
+            <field name="res_model">andina.report.gerencia</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="andina_report_gerencia_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- <menuitem 
+            id="menu_action_report_gerencia" 
+            action="action_report_gerencia" 
+            parent="menu_andina_reportes" 
+            groups="arc_andina.group_andina_manager"
+            sequence="4"/> -->
+
+    </data>
+</odoo>
+
