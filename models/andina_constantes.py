@@ -2,6 +2,7 @@
 
 from enum import Enum
 
+
 class PesoPrendas(Enum):
     p1 = 1.100
     p2 = 0.870

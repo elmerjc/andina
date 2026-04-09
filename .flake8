@@ -1,0 +1,48 @@
+[flake8]
+# Configuración específica para Odoo
+max-line-length = 120
+max-complexity = 15
+# Directorios a excluir del análisis
+exclude = 
+    .git,
+    __pycache__,
+    .tox,
+    .eggs,
+    *.egg,
+    build,
+    dist,
+    .venv,
+    venv,
+    */migrations/*,
+    */static/src/lib/*,
+    */static/lib/*,
+    node_modules
+# Errores y warnings a ignorar (específicos para Odoo)
+ignore = 
+    # E501: line too long (handled by max-line-length)
+    E501,
+    # W293: blank line contains whitespace
+    W293,
+    # W503: line break before binary operator (conflicts with W504)
+    W503,
+    # E203: whitespace before ':' (conflicts with black formatter)
+    E203,
+    # E401: module level import not at top of file (handled by E402)
+    E401,
+    # F401: imported but unused (common in Odoo __init__.py files)
+    F401
+# Patrones de archivos específicos para Odoo
+per-file-ignores =
+    __init__.py:F401,F403
+    */models/__init__.py:F401,F403
+    */controllers/__init__.py:F401,F403
+    */wizards/__init__.py:F401,F403
+    */tests/__init__.py:F401,F403
+# Configuraciones adicionales
+show-source = True
+statistics = True
+count = True
+doctests = True
+# Extensiones recomendadas para Odoo
+select = E,W,F,C,N
+application-import-names = odoo,odoo.addons
