@@ -17,24 +17,24 @@ class AndinaLavadoIndustrial(models.Model):
     #     return self.env['andina.config.settings'].sudo()._get_precio_kilo()
 
     name = fields.Char(
-        'Referencia',
+        string='Referencia',
         index=True,
         default=''
     )
     comentarios = fields.Text(
-        'Comentarios',
+        string='Comentarios',
         readonly=True,
         copy=False
     )
     fecha = fields.Date('Fecha')
     fecha_inicio = fields.Date(
-        'Fecha Inicio',
+        string='Fecha Inicio',
         required=True,
         readonly=True,
         states={'open': [('readonly', False)], 'done': [('readonly', False)]}
     )
     fecha_fin = fields.Date(
-        'Fecha Fin',
+        string='Fecha Fin',
         required=True,
         readonly=True,
         states={'open': [('readonly', False)], 'done': [('readonly', False)]}
@@ -48,7 +48,7 @@ class AndinaLavadoIndustrial(models.Model):
         states={'open': [('readonly', False)], 'done': [('readonly', False)]}
     )
     precio_kilo = fields.Float(
-        'Precio x Kilo',
+        string='Precio x Kilo',
         digits=(16, 3),
         # default=_get_default_precio_kilo,
         store=True,
@@ -56,53 +56,72 @@ class AndinaLavadoIndustrial(models.Model):
     )
     cobrar_por = fields.Selection(
         [('kilo', 'Kilo'), ('prenda', 'Prenda')],
-        'Cobrar por',
+        string='Cobrar por',
         default='kilo',
         required=True,
         readonly=True,
         states={'open': [('readonly', False)], 'done': [('readonly', False)]})
     peso_total = fields.Float(
-        'Peso Total',
+        string='Peso Total',
         digits=(16, 3),
         readonly=True,
         store=True,
         compute='_compute_totales'
     )
-    precio_total = fields.Float('Precio Total',
-        digits=(16,3),
+    precio_total = fields.Float(
+        string='Precio Total',
+        digits=(16, 3),
         readonly=True,
         store=True,
-        compute='_compute_totales')
-    cantidad_total = fields.Integer('Cantidad de prendas',
+        compute='_compute_totales'
+    )
+    cantidad_total = fields.Integer(
+        string='Cantidad de prendas',
         readonly=True,
         store=True,
-        compute='_compute_totales')
-    cantidad_turnoa = fields.Integer('Cantidad de prendas del Turno A',
+        compute='_compute_totales'
+    )
+    cantidad_turnoa = fields.Integer(
+        string='Cantidad de prendas del Turno A',
         readonly=True,
         store=True,
-        compute='_compute_totales')
-    cantidad_turnob = fields.Integer('Cantidad de prendas del Turno B',
+        compute='_compute_totales'
+    )
+    cantidad_turnob = fields.Integer(
+        string='Cantidad de prendas del Turno B',
         readonly=True,
         store=True,
-        compute='_compute_totales')
-    cantidad_turnoc = fields.Integer('Cantidad de prendas del Turno C',
+        compute='_compute_totales'
+    )
+    cantidad_turnoc = fields.Integer(
+        string='Cantidad de prendas del Turno C',
         readonly=True,
         store=True,
-        compute='_compute_totales')
+        compute='_compute_totales'
+    )
     user_id = fields.Many2one(
         'res.users',
         string='Responsable',
         track_visibility='onchange',
         readonly=True,
         default=lambda self: self.env.user)
-    state = fields.Selection(
-        [('open','Abierto'), ('confirm', 'En progreso'), ('done','Realizado'), ('cancel','Cancelado'), ('close','Cerrado')],
+    state = fields.Selection([
+        ('open', 'Abierto'),
+        ('confirm', 'En progreso'),
+        ('done', 'Realizado'),
+        ('cancel', 'Cancelado'),
+        ('close', 'Cerrado')
+    ],
         string='Estado',
         readonly=True,
         default='open',
         track_visibility='onchange',
-        copy=False)
-    is_parada = fields.Boolean('Turno Parada', default=False)
+        copy=False
+    )
+    is_parada = fields.Boolean(
+        string='Turno Parada',
+        default=False
+    )
     # turno = fields.Selection(
     #     [('REGULAR', 'REGULAR'), ('PARADA', 'PARADA')],
     #     'Turno',
@@ -112,18 +131,22 @@ class AndinaLavadoIndustrial(models.Model):
     #     states={'open': [('readonly', False)], 'done': [('readonly', False)]})
     area_id = fields.Many2one(
         'andina.area',
-        'Area Operativa',
-        change_default=True)
+        string='Area Operativa',
+        change_default=True
+    )
     gerencia_id = fields.Many2one(
         'andina.gerencia',
-        'Gerencia',
+        string='Gerencia',
         related='area_id.gerencia_id',
         store=True,
-        readonly=True)
+        readonly=True
+    )
     wizard_id = fields.Integer(
-        string="Importación")
+        string="Importación"
+    )
     wizard_name = fields.Char(
-        string="Referencia")   
+        string="Referencia"
+    )
 
     @api.depends(
         'lavado_line.p1a', 'lavado_line.p2a', 'lavado_line.p3a', 'lavado_line.p4a', 'lavado_line.p5a', 'lavado_line.p6a', 'lavado_line.p7a', 'lavado_line.p8a', 'lavado_line.p9a', 'lavado_line.p10a', 'lavado_line.p11a', 'lavado_line.p12a', 'lavado_line.p13a', 'lavado_line.p14a', 'lavado_line.p15a', 'lavado_line.p16a',

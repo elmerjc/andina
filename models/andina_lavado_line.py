@@ -13,66 +13,75 @@ class AndinaLavadoIndustrialLine(models.Model):
     _description = "Prendas para el lavado"
     _order = "lavado_id, id"
 
-    name = fields.Char('Description', default='')
-    sequence = fields.Integer('Secuencia', default=10)
-    lavado_id = fields.Many2one('andina.lavado.industrial', string='Control del lavado', ondelete='cascade')
-    fecha = fields.Date('Fecha', required=True, readonly=True, states={'open': [('readonly', False)], 'done': [('readonly', False)]})
-    p1a = fields.Integer('CAPUCHON-CHOMPA', default=0)
-    p1b = fields.Integer('CAPUCHON-CHOMPA', default=0)
-    p1c = fields.Integer('CAPUCHON-CHOMPA', default=0)
-    p2a = fields.Integer('CASACA CORTA', default=0)
-    p2b = fields.Integer('CASACA CORTA', default=0)
-    p2c = fields.Integer('CASACA CORTA', default=0)
-    p3a = fields.Integer('CASACA CUERO (SOLDADOR)', default=0)
-    p3b = fields.Integer('CASACA CUERO (SOLDADOR)', default=0)
-    p3c = fields.Integer('CASACA CUERO (SOLDADOR)', default=0)
-    p4a = fields.Integer('CASACA DE LONA', default=0)
-    p4b = fields.Integer('CASACA DE LONA', default=0)
-    p4c = fields.Integer('CASACA DE LONA', default=0)
-    p5a = fields.Integer('CHALECO DE SEGURIDAD', default=0)
-    p5b = fields.Integer('CHALECO DE SEGURIDAD', default=0)
-    p5c = fields.Integer('CHALECO DE SEGURIDAD', default=0)
-    p6a = fields.Integer('ESCARPINES', default=0)
-    p6b = fields.Integer('ESCARPINES', default=0)
-    p6c = fields.Integer('ESCARPINES', default=0)
-    p7a = fields.Integer('MAMELUCO', default=0)
-    p7b = fields.Integer('MAMELUCO', default=0)
-    p7c = fields.Integer('MAMELUCO', default=0)
-    p8a = fields.Integer('MANDILES CON BROCHES SIN PERCHERA', default=0)
-    p8b = fields.Integer('MANDILES CON BROCHES SIN PERCHERA', default=0)
-    p8c = fields.Integer('MANDILES CON BROCHES SIN PERCHERA', default=0)
-    p9a = fields.Integer('MANDILES CON HEBILLA Y PERCHERA', default=0)
-    p9b = fields.Integer('MANDILES CON HEBILLA Y PERCHERA', default=0)
-    p9c = fields.Integer('MANDILES CON HEBILLA Y PERCHERA', default=0)
-    p10a = fields.Integer('MANDILES CON HEBILLA SIN PERCHERA', default=0)
-    p10b = fields.Integer('MANDILES CON HEBILLA SIN PERCHERA', default=0)
-    p10c = fields.Integer('MANDILES CON HEBILLA SIN PERCHERA', default=0)
-    p11a = fields.Integer('MANDILES LONA CUERO', default=0)
-    p11b = fields.Integer('MANDILES LONA CUERO', default=0)
-    p11c = fields.Integer('MANDILES LONA CUERO', default=0)
-    p12a = fields.Integer('PANTALONES DE CUERO (SOLDADOR)', default=0)
-    p12b = fields.Integer('PANTALONES DE CUERO (SOLDADOR)', default=0)
-    p12c = fields.Integer('PANTALONES DE CUERO (SOLDADOR)', default=0)
-    p13a = fields.Integer('PANTALON DE LONA', default=0)
-    p13b = fields.Integer('PANTALON DE LONA', default=0)
-    p13c = fields.Integer('PANTALON DE LONA', default=0)
-    p14a = fields.Integer('CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)', default=0)
-    p14b = fields.Integer('CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)', default=0)
-    p14c = fields.Integer('CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)', default=0)
-    p15a = fields.Integer('GUANTES CUERO PANTUFLAS GORRO', default=0)
-    p15b = fields.Integer('GUANTES CUERO PANTUFLAS GORRO', default=0)
-    p15c = fields.Integer('GUANTES CUERO PANTUFLAS GORRO', default=0)
-    p16a = fields.Integer('CAMISA PANTALON', default=0)
-    p16b = fields.Integer('CAMISA PANTALON', default=0)
-    p16c = fields.Integer('CAMISA PANTALON', default=0)
+    name = fields.Char(string='Description', default='')
+    sequence = fields.Integer(string='Secuencia', default=10)
+    lavado_id = fields.Many2one(
+        'andina.lavado.industrial',
+        string='Control del lavado',
+        ondelete='cascade'
+    )
+    fecha = fields.Date(
+        string='Fecha',
+        required=True,
+        readonly=True,
+        states={'open': [('readonly', False)], 'done': [('readonly', False)]}
+    )
+    p1a = fields.Integer(string='CAPUCHON-CHOMPA', default=0)
+    p1b = fields.Integer(string='CAPUCHON-CHOMPA', default=0)
+    p1c = fields.Integer(string='CAPUCHON-CHOMPA', default=0)
+    p2a = fields.Integer(string='CASACA CORTA', default=0)
+    p2b = fields.Integer(string='CASACA CORTA', default=0)
+    p2c = fields.Integer(string='CASACA CORTA', default=0)
+    p3a = fields.Integer(string='CASACA CUERO (SOLDADOR)', default=0)
+    p3b = fields.Integer(string='CASACA CUERO (SOLDADOR)', default=0)
+    p3c = fields.Integer(string='CASACA CUERO (SOLDADOR)', default=0)
+    p4a = fields.Integer(string='CASACA DE LONA', default=0)
+    p4b = fields.Integer(string='CASACA DE LONA', default=0)
+    p4c = fields.Integer(string='CASACA DE LONA', default=0)
+    p5a = fields.Integer(string='CHALECO DE SEGURIDAD', default=0)
+    p5b = fields.Integer(string='CHALECO DE SEGURIDAD', default=0)
+    p5c = fields.Integer(string='CHALECO DE SEGURIDAD', default=0)
+    p6a = fields.Integer(string='ESCARPINES', default=0)
+    p6b = fields.Integer(string='ESCARPINES', default=0)
+    p6c = fields.Integer(string='ESCARPINES', default=0)
+    p7a = fields.Integer(string='MAMELUCO', default=0)
+    p7b = fields.Integer(string='MAMELUCO', default=0)
+    p7c = fields.Integer(string='MAMELUCO', default=0)
+    p8a = fields.Integer(string='MANDILES CON BROCHES SIN PERCHERA', default=0)
+    p8b = fields.Integer(string='MANDILES CON BROCHES SIN PERCHERA', default=0)
+    p8c = fields.Integer(string='MANDILES CON BROCHES SIN PERCHERA', default=0)
+    p9a = fields.Integer(string='MANDILES CON HEBILLA Y PERCHERA', default=0)
+    p9b = fields.Integer(string='MANDILES CON HEBILLA Y PERCHERA', default=0)
+    p9c = fields.Integer(string='MANDILES CON HEBILLA Y PERCHERA', default=0)
+    p10a = fields.Integer(string='MANDILES CON HEBILLA SIN PERCHERA', default=0)
+    p10b = fields.Integer(string='MANDILES CON HEBILLA SIN PERCHERA', default=0)
+    p10c = fields.Integer(string='MANDILES CON HEBILLA SIN PERCHERA', default=0)
+    p11a = fields.Integer(string='MANDILES LONA CUERO', default=0)
+    p11b = fields.Integer(string='MANDILES LONA CUERO', default=0)
+    p11c = fields.Integer(string='MANDILES LONA CUERO', default=0)
+    p12a = fields.Integer(string='PANTALONES DE CUERO (SOLDADOR)', default=0)
+    p12b = fields.Integer(string='PANTALONES DE CUERO (SOLDADOR)', default=0)
+    p12c = fields.Integer(string='PANTALONES DE CUERO (SOLDADOR)', default=0)
+    p13a = fields.Integer(string='PANTALON DE LONA', default=0)
+    p13b = fields.Integer(string='PANTALON DE LONA', default=0)
+    p13c = fields.Integer(string='PANTALON DE LONA', default=0)
+    p14a = fields.Integer(string='CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)', default=0)
+    p14b = fields.Integer(string='CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)', default=0)
+    p14c = fields.Integer(string='CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)', default=0)
+    p15a = fields.Integer(string='GUANTES CUERO PANTUFLAS GORRO', default=0)
+    p15b = fields.Integer(string='GUANTES CUERO PANTUFLAS GORRO', default=0)
+    p15c = fields.Integer(string='GUANTES CUERO PANTUFLAS GORRO', default=0)
+    p16a = fields.Integer(string='CAMISA PANTALON', default=0)
+    p16b = fields.Integer(string='CAMISA PANTALON', default=0)
+    p16c = fields.Integer(string='CAMISA PANTALON', default=0)
     cantidad_subtotal = fields.Integer(
-        'Cantidad Subtotal',
+        string='Cantidad Subtotal',
         readonly=True,
         store=True,
         compute='_compute_subtotal'
     )
     peso_subtotal = fields.Float(
-        'Peso Subtotal',
+        string='Peso Subtotal',
         digits=(16, 3),
         readonly=True,
         store=True,
@@ -80,7 +89,7 @@ class AndinaLavadoIndustrialLine(models.Model):
     )
     is_editable = fields.Boolean("Editable", default=True)
     state = fields.Selection(
-        'Estado',
+        string='Estado',
         related='lavado_id.state',
         store=True
     )
@@ -98,14 +107,14 @@ class AndinaLavadoIndustrialLine(models.Model):
     )
     area_id = fields.Many2one(
         'andina.area',
-        'Area Operativa',
+        string='Area Operativa',
         related='lavado_id.area_id',
         store=True,
         readonly=True
     )
     gerencia_id = fields.Many2one(
         'andina.gerencia',
-        'Gerencia',
+        string='Gerencia',
         related='lavado_id.gerencia_id',
         store=True,
         readonly=True

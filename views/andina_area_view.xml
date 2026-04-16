@@ -10,16 +10,16 @@
         </field>
     </record>
 
-    <record id="view_andina_area_tree" model="ir.ui.view">
-        <field name="name">andina.area.tree</field>
+    <record id="view_andina_area_list" model="ir.ui.view">
+        <field name="name">andina.area.list</field>
         <field name="model">andina.area</field>
         <field name="arch" type="xml">
-            <tree string="Area Operativa" create="0" edit="0">
+            <list string="Area Operativa" create="0" edit="0">
                 <field name="gerencia_id"/>
                 <field name="name"/>
                 <field name="descripcion"/>
                 <field name="tipo"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -49,7 +49,7 @@
     <record id="action_andina_area" model="ir.actions.act_window">
         <field name="name">Areas Operativas</field>
         <field name="res_model">andina.area</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_andina_area_search"/>
     </record>
 

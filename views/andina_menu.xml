@@ -11,10 +11,10 @@
       sequence="10"/>
     <menuitem name="Datos Generales" id="menu_andina_datos_generales" 
       parent="menu_andina" 
-      groups="arc_andina.group_andina_user"/>
+      groups="andina.group_andina_user"/>
     <menuitem name="Reportes" id="menu_andina_reportes" 
       parent="menu_andina" 
-      groups="arc_andina.group_andina_manager"/>
+      groups="andina.group_andina_manager"/>
 
   </data>
 </odoo>
