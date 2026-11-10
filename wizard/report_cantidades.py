@@ -4,10 +4,10 @@ import time
 import pytz
 from datetime import datetime, date, timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 from odoo.exceptions import UserError
-from odoo.addons.arc_andina.models import andina_constantes
+from odoo.addons.andina.models import andina_constantes
 
 class AndinaReportCantidades(models.TransientModel):
     _name = 'andina.report.cantidades'
@@ -72,7 +72,7 @@ class AndinaReportCantidades(models.TransientModel):
 
     def print_report(self):
         if self.date_inicio > self.date_fin:
-            raise UserError('La fecha inicio %s no puede ser mayor a la fecha fin %s') % (self.date_inicio, self.date_fin)
+            raise UserError(_('La fecha inicio %s no puede ser mayor a la fecha fin %s') % (self.date_inicio, self.date_fin))
         data = {
             'ids': self.ids,
             'model': self._name,
@@ -86,10 +86,14 @@ class AndinaReportCantidades(models.TransientModel):
                 'turno': self.turno,
             },
         }
-        return self.env.ref('arc_andina.report_cantidades_action').report_action(self, data=data)
+        # _get_report devuelve la acción con sudo: sin el módulo 'mail' un usuario interno
+        # no tiene permiso de lectura sobre ir.actions.report
+        report = self.env['ir.actions.report']._get_report('andina.report_cantidades_action')
+        return report.report_action(self, data=data, config=False)
 
 class ReportCantidades(models.AbstractModel):
-    _name = 'report.arc_andina.andina_report_cantidades_view'
+    _name = 'report.andina.andina_report_cantidades_view'
+    _description = 'Plantilla del reporte de detalle de factura'
 
     def _get_data_cantidades(self, fecha_inicio, fecha_fin, gerencia_id, turno):
         cr = self.env.cr

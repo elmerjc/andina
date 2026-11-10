@@ -2,11 +2,11 @@
 <odoo>
     <template id="andina_report_consolidado_view">
         <t t-call="web.html_container">
-            <t t-call="arc_andina.andina_layout">
+            <t t-call="andina.andina_layout">
                 <div class="page" style="font-size: 12px;">
                     <header>
                         <h4 class="text-center">
-                            <span t-esc="titulo"/>
+                            <span t-out="titulo"/>
                         </h4>
                     </header>
                     <table id="table-data" class="mt-4">
@@ -32,10 +32,10 @@
                                         style="page-break-inside:avoid; page-break-after:auto;">
                                         <td style="border: 1px solid black;" 
                                             t-attf-class="{{ 'text-center align-middle' if check_gerencia else 'd-none text-center align-middle'}}">
-                                            <span t-esc="data['gerencia']"/>
+                                            <span t-out="data['gerencia']"/>
                                         </td>
                                         <td style="border: 1px solid black;" class="text-center align-middle">
-                                            <span t-esc="data['area_operativa']"/>
+                                            <span t-out="data['area_operativa']"/>
                                         </td>
                                         <td t-att-colspan="5">
                                             <table style="width: 100%;">
@@ -51,285 +51,285 @@
                                                 <tbody>
                                                 <tr t-attf-class="{{ '' if data['p1'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'CAPUCHON-CHOMPA'"/>
+                                                        <span t-out="'CAPUCHON-CHOMPA'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p1']"/>
+                                                        <span t-out="data['p1']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso1'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso1'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso1'] * precio_kilo)"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso1'] * precio_kilo)"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p2'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'CASACA CORTA'"/>
+                                                        <span t-out="'CASACA CORTA'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p2']"/>
+                                                        <span t-out="data['p2']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso2'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso2'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso2'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso2'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p3'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'CASACA CUERO (SOLDADOR)'"/>
+                                                        <span t-out="'CASACA CUERO (SOLDADOR)'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p3']"/>
+                                                        <span t-out="data['p3']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso3'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso3'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso3'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso3'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p4'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'CASACA DE LONA'"/>
+                                                        <span t-out="'CASACA DE LONA'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p4']"/>
+                                                        <span t-out="data['p4']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso4'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso4'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso4'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso4'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p5'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'CHALECO DE SEGURIDAD'"/>
+                                                        <span t-out="'CHALECO DE SEGURIDAD'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p5']"/>
+                                                        <span t-out="data['p5']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso5'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso5'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso5'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso5'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p6'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'ESCARPINES'"/>
+                                                        <span t-out="'ESCARPINES'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p6']"/>
+                                                        <span t-out="data['p6']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso6'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso6'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso6'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso6'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p7'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'MAMELUCO'"/>
+                                                        <span t-out="'MAMELUCO'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p7']"/>
+                                                        <span t-out="data['p7']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso7'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso7'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso7'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso7'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p8'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'MANDILES CON BROCHES SIN PERCHERA'"/>
+                                                        <span t-out="'MANDILES CON BROCHES SIN PERCHERA'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p8']"/>
+                                                        <span t-out="data['p8']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso8'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso8'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso8'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso8'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p9'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'MANDILES CON HEBILLA Y PERCHERA'"/>
+                                                        <span t-out="'MANDILES CON HEBILLA Y PERCHERA'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p9']"/>
+                                                        <span t-out="data['p9']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso9'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso9'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso9'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso9'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p10'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'MANDILES CON HEBILLA SIN PERCHERA'"/>
+                                                        <span t-out="'MANDILES CON HEBILLA SIN PERCHERA'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p10']"/>
+                                                        <span t-out="data['p10']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso10'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso10'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso10'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso10'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p11'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'MANDILES LONA CUERO'"/>
+                                                        <span t-out="'MANDILES LONA CUERO'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p11']"/>
+                                                        <span t-out="data['p11']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso11'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso11'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso11'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso11'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p12'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'PANTALONES DE CUERO (SOLDADOR)'"/>
+                                                        <span t-out="'PANTALONES DE CUERO (SOLDADOR)'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p12']"/>
+                                                        <span t-out="data['p12']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso12'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso12'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso12'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso12'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p13'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'PANTALON DE LONA'"/>
+                                                        <span t-out="'PANTALON DE LONA'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p13']"/>
+                                                        <span t-out="data['p13']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso13'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso13'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso13'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso13'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p14'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)'"/>
+                                                        <span t-out="'CASACA Y PANT. IMPERMEABLE (ANTIACIDOS)'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p14']"/>
+                                                        <span t-out="data['p14']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso14'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso14'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso14'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso14'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p15'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'GUANTES CUERO PANTUFLAS GORRO'"/>
+                                                        <span t-out="'GUANTES CUERO PANTUFLAS GORRO'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p15']"/>
+                                                        <span t-out="data['p15']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso15'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso15'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso15'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso15'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr t-attf-class="{{ '' if data['p16'] &gt; 0 else 'd-none' }}">
                                                     <td style="border: 1px solid black;" class="text-left">
-                                                        <span t-esc="'CAMISA PANTALON'"/>
+                                                        <span t-out="'CAMISA PANTALON'"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="data['p16']"/>
+                                                        <span t-out="data['p16']"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso16'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso16'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="precio_kilo"/>
+                                                        <span t-out="precio_kilo"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                                        <span t-esc="'{0:,.3f}'.format(data['peso16'] * (precio_kilo))"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['peso16'] * (precio_kilo))"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="border: 1px solid black;" class="text-center"></td>
                                                     <td style="background-color:#98CDEC;border: 1px solid black; padding-right: 5px;" class="text-right">
                                                         <t t-set="qty_total" t-value="qty_total + data['cantidad_total']"/>
-                                                        <span t-esc="data['cantidad_total']"/>
+                                                        <span t-out="data['cantidad_total']"/>
                                                     </td>
                                                     <td style="background-color:#98CDEC;border: 1px solid black; padding-right: 5px;" class="text-right">
                                                         <t t-set="peso_total" t-value="peso_total + data['kilos_total']"/>
-                                                        <span t-esc="'{0:,.3f}'.format(data['kilos_total'])"/>
+                                                        <span t-out="'{0:,.3f}'.format(data['kilos_total'])"/>
                                                     </td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
                                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-center"></td>
@@ -347,17 +347,17 @@
                                     <td></td>
                                     <td style="background-color:#98CDEC;">TOTAL KILOS</td>
                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                        <span t-esc="'{0:,.3f}'.format(qty_total)"/>
+                                        <span t-out="'{0:,.3f}'.format(qty_total)"/>
                                     </td>
                                     <td style="border: 1px solid black; padding-right: 5px;" class="text-right">
-                                        <span t-esc="'{0:,.3f}'.format(peso_total)"/>
+                                        <span t-out="'{0:,.3f}'.format(peso_total)"/>
                                     </td>
                                     <td colspan="2" style="padding-left: 5px; padding-right: 5px; font-size: 13px; font-weight: bold;" class="text-right">
-                                        S/ <span t-esc="'{0:,.3f}'.format(peso_total * (precio_kilo))"/>
+                                        S/ <span t-out="'{0:,.3f}'.format(peso_total * (precio_kilo))"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="6">ILO, <span t-esc="date_presentacion"/></td>
+                                    <td colspan="6">ILO, <span t-out="date_presentacion"/></td>
                                 </tr>
                         </tfooter>
                     </table>

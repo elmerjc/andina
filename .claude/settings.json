@@ -1,0 +1,43 @@
+{
+    "permissions": {
+        "allow": [
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep",
+            "Bash(git status)",
+            "Bash(git diff*)",
+            "Bash(git log*)",
+            "Bash(git add*)",
+            "Bash(git commit*)",
+            "Bash(git stash*)",
+            "Bash(git show*)",
+            "Bash(python*)",
+            "Bash(python3*)",
+            "Bash(pytest*)",
+            "Bash(grep*)",
+            "Bash(find*)",
+            "Bash(cat*)",
+            "Bash(ls*)",
+            "Bash(docker compose ps)",
+            "Bash(docker compose up*)",
+            "Bash(docker compose down*)",
+            "Bash(docker compose logs*)",
+            "Bash(docker compose exec web odoo*)",
+            "Bash(docker compose exec web python*)"
+        ],
+        "deny": [
+            "Bash(rm -rf*)",
+            "Bash(git push --force*)",
+            "Bash(git reset --hard*)",
+            "Bash(git clean -fd*)",
+            "Bash(docker compose down -v*)",
+            "Bash(DROP*)",
+            "Bash(DELETE FROM*)"
+        ]
+    },
+    "env": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+    }
+}

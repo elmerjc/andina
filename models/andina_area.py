@@ -17,6 +17,4 @@ class AndinaArea(models.Model):
     )
     gerencia_id = fields.Many2one('andina.gerencia', 'Gerencia', required=True)
 
-    _sql_constraints = [
-        ('name_uniq', 'unique(name)', 'El area operativa debe ser unico!'),
-    ]
+    _name_uniq = models.Constraint('UNIQUE (name)', 'El area operativa debe ser unico!')

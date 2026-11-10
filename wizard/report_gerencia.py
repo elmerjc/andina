@@ -4,10 +4,10 @@ import time
 import pytz
 from datetime import datetime, date, timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 from odoo.exceptions import UserError
-from odoo.addons.arc_andina.models import andina_constantes
+from odoo.addons.andina.models import andina_constantes
 
 class AndinaReportGerencia(models.TransientModel):
     _name = 'andina.report.gerencia'
@@ -70,7 +70,7 @@ class AndinaReportGerencia(models.TransientModel):
 
     def print_report(self):
         if self.fecha_inicio > self.fecha_fin:
-            raise UserError('La fecha inicio %s no puede ser mayor a la fecha fin %s') % (self.fecha_inicio,self.fecha_fin)
+            raise UserError(_('La fecha inicio %s no puede ser mayor a la fecha fin %s') % (self.fecha_inicio,self.fecha_fin))
 
         data = {
             'ids': self.ids,
@@ -86,10 +86,14 @@ class AndinaReportGerencia(models.TransientModel):
             },
         }
 
-        return self.env.ref('arc_andina.report_gerencia_action').report_action(self, data=data)
+        # _get_report devuelve la acción con sudo: sin el módulo 'mail' un usuario interno
+        # no tiene permiso de lectura sobre ir.actions.report
+        report = self.env['ir.actions.report']._get_report('andina.report_gerencia_action')
+        return report.report_action(self, data=data, config=False)
 
 class ReportGerencia(models.AbstractModel):
-    _name = 'report.arc_andina.andina_report_gerencia_view'
+    _name = 'report.andina.andina_report_gerencia_view'
+    _description = 'Plantilla del reporte por gerencia'
 
     def _get_data_area(self, fecha_inicio, fecha_fin, turno, area_id):
         cr = self.env.cr

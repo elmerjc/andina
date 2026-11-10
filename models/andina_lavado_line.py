@@ -22,9 +22,7 @@ class AndinaLavadoIndustrialLine(models.Model):
     )
     fecha = fields.Date(
         string='Fecha',
-        required=True,
-        readonly=True,
-        states={'open': [('readonly', False)], 'done': [('readonly', False)]}
+        required=True
     )
     p1a = fields.Integer(string='CAPUCHON-CHOMPA', default=0)
     p1b = fields.Integer(string='CAPUCHON-CHOMPA', default=0)

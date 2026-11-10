@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Control de Lavado Industrial',
-    'version': '13.0',
+    'version': '19.0.1.0.0',
     'category': 'website',
     'sequence': 1,
     'description': 'Control de Lavado Industrial',
     'author' : 'arc',
     'website': 'www.arc.pe',
     'depends': [
-        'base'
+        'base',
+        'web',
     ],
     'data': [
         'security/andina_security.xml',
@@ -19,7 +20,6 @@
         'views/andina_area_view.xml',
         # 'views/andina_prenda_view.xml',
         'views/andina_lavado_view.xml',
-        'views/andina_assets.xml',
         'views/andina_layouts.xml',
         'report/andina_report.xml',
         'report/andina_report_cantidades.xml',
@@ -31,6 +31,14 @@
         'wizard/report_gerencia_view.xml',
         'wizard/report_area_view.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'andina/static/src/css/style.css',
+        ],
+        'web.report_assets_common': [
+            'andina/static/src/css/report_style.css',
+        ],
+    },
     'installable': True,
     'auto_install': False,
     'application': True,

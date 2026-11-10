@@ -4,10 +4,10 @@ import time
 import pytz
 from datetime import datetime, date, timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 from odoo.exceptions import UserError
-from odoo.addons.arc_andina.models import andina_constantes
+from odoo.addons.andina.models import andina_constantes
 
 class AndinaReportArea(models.TransientModel):
     _name = 'andina.report.area'
@@ -76,7 +76,7 @@ class AndinaReportArea(models.TransientModel):
 
     def print_report(self):
         if self.fecha_inicio > self.fecha_fin:
-            raise UserError('La fecha inicio %s no puede ser mayor a la fecha fin %s') % (self.fecha_inicio, self.fecha_fin)
+            raise UserError(_('La fecha inicio %s no puede ser mayor a la fecha fin %s') % (self.fecha_inicio, self.fecha_fin))
         data = {
             'ids': self.ids,
             'model': self._name,
@@ -92,11 +92,15 @@ class AndinaReportArea(models.TransientModel):
                 'turno': self.turno,
             },
         }
-        return self.env.ref('arc_andina.report_area_action').report_action(self, data=data)
+        # _get_report devuelve la acción con sudo: sin el módulo 'mail' un usuario interno
+        # no tiene permiso de lectura sobre ir.actions.report
+        report = self.env['ir.actions.report']._get_report('andina.report_area_action')
+        return report.report_action(self, data=data, config=False)
 
 
 class ReportDetallado(models.AbstractModel):
-    _name = 'report.arc_andina.andina_report_area_view'
+    _name = 'report.andina.andina_report_area_view'
+    _description = 'Plantilla del reporte por area operativa'
 
     def _get_data_persona(self, line_id):
         cr = self.env.cr

@@ -10,6 +10,4 @@ class AndinaGerencia(models.Model):
 
     name = fields.Char('Gerencia', required=True)
     
-    _sql_constraints = [
-        ('name_uniq', 'unique(name)', 'La gerencia debe ser unico!'),
-    ]
+    _name_uniq = models.Constraint('UNIQUE (name)', 'La gerencia debe ser unico!')

@@ -54,7 +54,7 @@
             id="menu_action_report_area" 
             action="action_report_area" 
             parent="menu_andina_reportes" 
-            groups="arc_andina.group_andina_manager" 
+            groups="andina.group_andina_manager" 
             sequence="5"/>
 
     </data>

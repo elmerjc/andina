@@ -15,13 +15,13 @@
         <field name="name">andina.prenda.tree</field>
         <field name="model">andina.prenda</field>
         <field name="arch" type="xml">
-            <tree string="Prenda">
+            <list string="Prenda">
                 <field name="name"/>
                 <field name="detalle"/>
                 <field name="peso"/>
                 <field name="precio"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
       </record>
 
@@ -51,7 +51,7 @@
       <record id="action_andina_prenda" model="ir.actions.act_window">
         <field name="name">Prendas</field>
         <field name="res_model">andina.prenda</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_andina_prenda_search"/>
       </record>
 

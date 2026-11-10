@@ -21,7 +21,6 @@ class andina_prenda(models.Model):
     user_id = fields.Many2one(
         'res.users',
         string='Responsable',
-        track_visibility='onchange',
         readonly=True,
         default=lambda self: self.env.user)
     active = fields.Boolean(
@@ -29,6 +28,4 @@ class andina_prenda(models.Model):
         default=True
     )
 
-    _sql_constraints = [
-        ('name_uniq', 'unique(name,detalle)', 'La descripción debe ser unica!'),
-    ]
+    _name_uniq = models.Constraint('UNIQUE (name, detalle)', 'La descripción debe ser unica!')

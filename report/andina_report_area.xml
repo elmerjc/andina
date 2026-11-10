@@ -2,11 +2,11 @@
 <odoo>
     <template id="andina_report_area_view">
         <t t-call="web.html_container">
-            <t t-call="arc_andina.southercopper_layout">
+            <t t-call="andina.southercopper_layout">
                 <div class="page">
                     <header>
                         <h4 class="text-center">
-                            <span t-esc="titulo"/>
+                            <span t-out="titulo"/>
                         </h4>
                     </header>
                     <table class="table-data">
@@ -36,26 +36,26 @@
                             <t t-if="len(data_area) > 0">
                             <tr t-foreach="data_area" t-as="li">
                                 <td style="border-bottom:1pt solid black;">
-                                    <span t-esc="li['fecha']" t-field-options='{"format": "MM/dd/yyyy"}'/>
+                                    <span t-out="li['fecha']"/>
                                 </td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p1']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p2']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p3']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p4']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p5']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p6']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p7']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p8']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p9']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p10']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p11']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p12']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p16']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p13']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p14']"/></td>
-                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-esc="li['p15']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p1']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p2']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p3']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p4']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p5']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p6']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p7']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p8']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p9']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p10']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p11']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p12']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p16']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p13']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p14']"/></td>
+                                <td style="border: 1px solid black; padding-right: 2px;" class="text-center"><span t-out="li['p15']"/></td>
                                 <td style="border-bottom:1pt solid black; padding-right: 2px;" class="text-center">
-                                    <span t-esc="li['subtotal']"/>
+                                    <span t-out="li['subtotal']"/>
                                 </td>
                             </tr>
                             </t>
@@ -69,13 +69,13 @@
                             <tr>
                                 <td colspan="14"></td>
                                 <td colspan="3"><strong>TOTAL PIEZAS</strong></td>
-                                <td class="text-center"><t t-esc="int(sum_totales[0] or 0)"/></td>
+                                <td class="text-center"><t t-out="int(sum_totales[0] or 0)"/></td>
                             </tr>
                         </tfooter>
                     </table>
                     <table>
                         <tr>
-                            <td>ILO, <span t-esc="date_presentacion"/></td>
+                            <td>ILO, <span t-out="date_presentacion"/></td>
                         </tr>
                     </table>
                     <div class="oe_structure"/>

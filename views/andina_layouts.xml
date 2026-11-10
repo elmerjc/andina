@@ -2,9 +2,9 @@
 <odoo>
   <template id="andina_layout">
       <div class="article">
-        <t t-call="arc_andina.andina_layout_header"/>
-        <t t-raw="0"/>
-        <t t-call="arc_andina.andina_layout_footer"/>
+        <t t-call="andina.andina_layout_header"/>
+        <t t-out="0"/>
+        <t t-call="andina.andina_layout_footer"/>
       </div>
   </template>
 
@@ -12,7 +12,7 @@
       <div class="header">
         <div class="row">
           <div class="col-5 text-left">
-           <img src="/arc_andina/static/src/img/logo.jpg" style="width:100%"/>
+           <img src="/andina/static/src/img/logo.jpg" style="width:100%"/>
           </div>
           <div class="col-7 text-right">
             <small>CALLE LAS GARDENIAS MZ. F LT. 01 - URB. CESAR VALLEJO</small><br/>
@@ -36,9 +36,9 @@
 
   <template id="southercopper_layout">
       <div class="article">
-        <t t-call="arc_andina.southercopper_layout_header"/>
-        <t t-raw="0"/>
-        <t t-call="arc_andina.andina_layout_footer"/>
+        <t t-call="andina.southercopper_layout_header"/>
+        <t t-out="0"/>
+        <t t-call="andina.andina_layout_footer"/>
       </div>
   </template>
 
@@ -46,7 +46,7 @@
       <div class="header">
         <div class="row">
           <div class="col-3 text-left">
-           <img src="/arc_andina/static/src/img/southercopper.jpg" style="width:100%"/>
+           <img src="/andina/static/src/img/southercopper.jpg" style="width:100%"/>
           </div>
           <div class="col-9 text-right">
           </div>

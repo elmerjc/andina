@@ -29,23 +29,17 @@ class AndinaLavadoIndustrial(models.Model):
     fecha = fields.Date('Fecha')
     fecha_inicio = fields.Date(
         string='Fecha Inicio',
-        required=True,
-        readonly=True,
-        states={'open': [('readonly', False)], 'done': [('readonly', False)]}
+        required=True
     )
     fecha_fin = fields.Date(
         string='Fecha Fin',
-        required=True,
-        readonly=True,
-        states={'open': [('readonly', False)], 'done': [('readonly', False)]}
+        required=True
     )
     lavado_line = fields.One2many(
         'andina.lavado.industrial.line',
         'lavado_id',
         string='Prendas para el lavado',
-        readonly=True,
-        copy=True,
-        states={'open': [('readonly', False)], 'done': [('readonly', False)]}
+        copy=True
     )
     precio_kilo = fields.Float(
         string='Precio x Kilo',
@@ -58,9 +52,7 @@ class AndinaLavadoIndustrial(models.Model):
         [('kilo', 'Kilo'), ('prenda', 'Prenda')],
         string='Cobrar por',
         default='kilo',
-        required=True,
-        readonly=True,
-        states={'open': [('readonly', False)], 'done': [('readonly', False)]})
+        required=True)
     peso_total = fields.Float(
         string='Peso Total',
         digits=(16, 3),
@@ -102,7 +94,6 @@ class AndinaLavadoIndustrial(models.Model):
     user_id = fields.Many2one(
         'res.users',
         string='Responsable',
-        track_visibility='onchange',
         readonly=True,
         default=lambda self: self.env.user)
     state = fields.Selection([
@@ -115,7 +106,6 @@ class AndinaLavadoIndustrial(models.Model):
         string='Estado',
         readonly=True,
         default='open',
-        track_visibility='onchange',
         copy=False
     )
     is_parada = fields.Boolean(
@@ -348,8 +338,8 @@ class AndinaLavadoIndustrial(models.Model):
         action = {
             'name': 'Detalle del Control',
             'type': 'ir.actions.act_window',
-            'views': [(self.env.ref('arc_andina.view_andina_lavado_industrial_line_tree').id, 'tree')],
-            'view_mode': 'tree',
+            'views': [(self.env.ref('andina.view_andina_lavado_industrial_line_tree').id, 'list')],
+            'view_mode': 'list',
             'res_model': 'andina.lavado.industrial.line',
         }
         context = {
@@ -372,8 +362,7 @@ class AndinaLavadoIndustrial(models.Model):
             'name': 'Detalle del Control',
             'type': 'ir.actions.act_window',
             'res_model': 'andina.lavado.industrial.line',
-            # 'views': [(self.env.ref('arc_andina.view_andina_lavado_industrial_line_tree').id, 'tree')],
-            'view_type': 'list',
+            # 'views': [(self.env.ref('andina.view_andina_lavado_industrial_line_tree').id, 'list')],
             'view_mode': 'list',
             'domain': domain,
         }
@@ -399,9 +388,9 @@ class AndinaLavadoIndustrial(models.Model):
         # _logger.info('CREAR DETALLE : VALS ===== %s' % vals)
         return vals
 
-    @api.model
-    def create(self, vals):
-        vals['name'] = self.env['ir.sequence'].next_by_code('andina.lavado.industrial')
-        vals['state'] = 'open'
-        result = super(AndinaLavadoIndustrial, self).create(vals)
-        return result
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['name'] = self.env['ir.sequence'].next_by_code('andina.lavado.industrial')
+            vals['state'] = 'open'
+        return super().create(vals_list)

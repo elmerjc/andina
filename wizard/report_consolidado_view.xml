@@ -58,7 +58,7 @@
             id="menu_action_report_consolidado" 
             action="action_report_consolidado" 
             parent="menu_andina_reportes" 
-            groups="arc_andina.group_andina_manager"
+            groups="andina.group_andina_manager"
             sequence="3"/>
 
     </data>

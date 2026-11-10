@@ -60,7 +60,7 @@
             id="menu_action_report_cantidades" 
             action="action_report_cantidades" 
             parent="menu_andina_reportes" 
-            groups="arc_andina.group_andina_manager"
+            groups="andina.group_andina_manager"
             sequence="2"/>
 
     </data>

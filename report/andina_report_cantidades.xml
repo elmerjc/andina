@@ -2,11 +2,11 @@
 <odoo>
     <template id="andina_report_cantidades_view">
         <t t-call="web.html_container">
-            <t t-call="arc_andina.andina_layout">
+            <t t-call="andina.andina_layout">
                 <div class="page">
                     <header>
                         <h3 class="text-center">
-                            <span t-esc="titulo"/>
+                            <span t-out="titulo"/>
                         </h3>
                     </header>
                     <table id="table-data">
@@ -83,26 +83,26 @@
                                 <t t-foreach="data_cantidades" t-as="li">
                                     <tr>
                                         <td style="border: 1px solid black;width: 130px;" class="text-center">
-                                            <span t-esc="li['fecha']" t-field-options='{"format": "MM/dd/yyyy"}'/>
+                                            <span t-out="li['fecha']"/>
                                         </td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p1']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p2']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p3']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p4']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p5']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p6']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p7']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p8']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p9']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p10']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p11']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p12']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p16']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p13']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p14']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['p15']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['subtotal']"/></td>
-                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-esc="li['subtotal_kilos']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p1']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p2']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p3']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p4']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p5']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p6']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p7']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p8']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p9']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p10']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p11']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p12']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p16']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p13']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p14']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['p15']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['subtotal']"/></td>
+                                        <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><span t-out="li['subtotal_kilos']"/></td>
                                     </tr>
                                 </t>
                             </t>
@@ -116,43 +116,43 @@
                             <t t-if="len(data_cantidades) > 0">
                             <tr>
                                 <td style="border: 1px solid black;width: 130px;" class="text-center">PIEZAS</td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[1]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[2]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[3]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[4]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[5]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[6]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[7]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[8]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[9]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[10]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[11]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[12]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[16]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[13]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[14]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[15]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[17]"/></td>
-                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-esc="data_totales[18]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[1]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[2]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[3]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[4]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[5]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[6]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[7]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[8]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[9]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[10]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[11]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[12]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[16]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[13]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[14]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[15]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[17]"/></td>
+                                <td style="border: 1px solid black; padding-right: 5px;" class="text-right"><t t-out="data_totales[18]"/></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid black;width: 130px;" class="text-center">KILOS*PZS</td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[1]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[2]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[3]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[4]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[5]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[6]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[7]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[8]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[9]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[10]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[11]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[12]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[16]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[13]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[14]"/></td>
-                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-esc="data_pesos[15]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[1]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[2]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[3]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[4]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[5]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[6]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[7]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[8]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[9]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[10]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[11]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[12]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[16]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[13]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[14]"/></td>
+                                <td style="border: 1px solid black;padding-right: 5px;" class="text-right"><t t-out="data_pesos[15]"/></td>
                                 <td style="border: 1px solid black;padding-right: 5px;" class="text-right"></td>
                                 <td style="border: 1px solid black;padding-right: 5px;" class="text-right"></td>
                             </tr>
@@ -160,32 +160,32 @@
                                 <td colspan="14"></td>
                                 <td colspan="4" style="border: 1px solid black;background-color:#F7BE75;" class="text-center">TOTAL KILOS</td>
                                 <td style="border: 1px solid black; padding-right: 5px;background-color:#F7BE75;" class="text-right">
-                                    <t t-esc="sum_peso[0]"/>
+                                    <t t-out="sum_peso[0]"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="14"></td>
                                 <td colspan="4" style="border: 1px solid black;background-color:#FDCBAF;" class="text-center">VALOR VENTA</td>
                                 <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right">
-                                    <t t-esc="'{0:,.2f}'.format((sum_peso[0]) * precio_kilo)"/>
+                                    <t t-out="'{0:,.2f}'.format((sum_peso[0]) * precio_kilo)"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="14"></td>
                                 <td colspan="4" style="border: 1px solid black;background-color:#FDCBAF;" class="text-center">IGV 18%</td>
                                 <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right">
-                                    <t t-esc="'{0:,.2f}'.format(((sum_peso[0]) * precio_kilo) * 0.18)"/>
+                                    <t t-out="'{0:,.2f}'.format(((sum_peso[0]) * precio_kilo) * 0.18)"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="14"></td>
                                 <td colspan="4" style="border: 1px solid black;background-color:#FDCBAF;" class="text-center">TOTAL S/</td>
                                 <td style="border: 1px solid black; padding-right: 5px;background-color:#FDCBAF;" class="text-right">
-                                    <t t-esc="'{0:,.2f}'.format(((sum_peso[0]) * precio_kilo) * 1.18)"/>
+                                    <t t-out="'{0:,.2f}'.format(((sum_peso[0]) * precio_kilo) * 1.18)"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3">ILO, <span t-esc="date_presentacion"/></td>
+                                <td colspan="3">ILO, <span t-out="date_presentacion"/></td>
                                 <td colspan="15"></td>
                             </tr>
                             </t>

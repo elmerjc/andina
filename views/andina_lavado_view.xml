@@ -11,7 +11,7 @@
                     <field name="fecha_fin" string="Fecha Fin" filter_domain="[('fecha_fin','ilike',self)]"/>
                     <field name="area_id" string="Area" filter_domain="[('area_id','ilike',self)]"/>
                     <field name="gerencia_id" string="Gerencia" filter_domain="[('gerencia_id','ilike',self)]"/>
-                    <group expand="0" string="Agrupar por">
+                    <group>
                         <filter string="Área" name="group_by_area_id" context="{'group_by':'area_id'}"/>
                     </group>
                </search>
@@ -22,7 +22,7 @@
             <field name="name">andina.lavado.industrial.tree</field>
             <field name="model">andina.lavado.industrial</field>
             <field name="arch" type="xml">
-                <tree string="Controles del lavado industrial">
+                <list string="Controles del lavado industrial">
                     <field name="name"/>
                     <field name="area_id"/>
                     <field name="gerencia_id" optional="hide"/>
@@ -33,7 +33,7 @@
                     <field name="peso_total" sum="Peso Total"/>
                     <field name="precio_total" sum="Peso Total"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -41,9 +41,9 @@
             <field name="name">andina.lavado.industrial.line.tree</field>
             <field name="model">andina.lavado.industrial.line</field>
             <field name="arch" type="xml">
-                <tree default_order="fecha" editable="top" string="Detalle del Control" class="andina_treeview">
+                <list default_order="fecha" editable="top" string="Detalle del Control" class="andina_treeview">
                     <field name="sequence" invisible="1"/>
-                    <field name="fecha"/>
+                    <field name="fecha" readonly="state not in ('open', 'done')"/>
                     <field name="is_editable" invisible="1"/>
                     <field name="p1a" string="CAPUCHON-CHOMPA"/>
                     <field name="p1b" string=" "/>
@@ -93,12 +93,12 @@
                     <field name="p16a" string="CAMISA PANTALON"/>
                     <field name="p16b" string=" "/>
                     <field name="p16c" string=" "/>
-                    <field name="peso_subtotal" string="Peso" 
-                        attrs="{'readonly': [('state', '!=', 'confirm')]}"
+                    <field name="peso_subtotal" string="Peso"
+                        readonly="state != 'confirm'"
                         width="0.5"/>
                     <field name="lavado_id" invisible="1"/>
                     <field name="state" invisible="1"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -108,11 +108,11 @@
             <field name="arch" type="xml">
                 <form string="Control del lavado por Área">
                 <header>
-                    <button name="action_start" states="open" string="Crear fechas" type="object" class="oe_highlight"/>
-                    <button name="action_open" type="object" string="Abrir" attrs="{'invisible':[('state', '!=', 'cancel')]}" groups="base.group_user"/>
-                    <button name="action_cancel" type="object" string="Cancelar" attrs="{'invisible':[('state', '=', 'cancel')]}" groups="base.group_user"/>
-                    <button name="action_close" type="object" string="Cerrar" attrs="{'invisible':[('state','=','close')]}" groups="base.group_user"/>
-                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="open,confirm,done,cancel" statusbar_colors='{"cancel":"red"}'/>
+                    <button name="action_start" invisible="state != 'open'" string="Crear fechas" type="object" class="oe_highlight"/>
+                    <button name="action_open" type="object" string="Abrir" invisible="state != 'cancel'" groups="base.group_user"/>
+                    <button name="action_cancel" type="object" string="Cancelar" invisible="state == 'cancel'" groups="base.group_user"/>
+                    <button name="action_close" type="object" string="Cerrar" invisible="state == 'close'" groups="base.group_user"/>
+                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="open,confirm,done,cancel"/>
                 </header>
                 <sheet>
                     <field name="lavado_line" invisible="1"/>
@@ -120,7 +120,7 @@
                         <button string="Detalle" type="object"
                                 name="action_ver_detalle"
                                 class="oe_stat_button" icon="fa-exchange"
-                                attrs="{'invisible': [('state', '=', 'open')]}"/>
+                                invisible="state == 'open'"/>
                     </div>
                     <div class="oe_title">
                         <label for="name" string="N° Control" class="oe_edit_only"/>
@@ -130,15 +130,15 @@
                         <group>
                             <field name="area_id"/>
                             <field name="gerencia_id"/>
-                            <field name="cobrar_por"/>
+                            <field name="cobrar_por" readonly="state not in ('open', 'done')"/>
                             <field name="precio_kilo"/>
                             <field name="peso_total"/>
                             <field name="cantidad_total"/>
                         </group>
                         <group>
                             <field name="is_parada"/>
-                            <field name="fecha_inicio"/>
-                            <field name="fecha_fin"/>
+                            <field name="fecha_inicio" readonly="state not in ('open', 'done')"/>
+                            <field name="fecha_fin" readonly="state not in ('open', 'done')"/>
                         </group>
                     </group>
                 </sheet>
@@ -149,7 +149,7 @@
         <record id="action_andina_lavado_industrial" model="ir.actions.act_window">
             <field name="name">Lavado Industrial</field>
             <field name="res_model">andina.lavado.industrial</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="view_id" ref="view_andina_lavado_industrial_tree"/>
             <field name="search_view_id" ref="view_andina_lavado_industrial_search"/>
             <field name="help" type="html">

@@ -32,51 +32,43 @@
         <field name="dpi">90</field>
     </record>
 
-    <report 
-        id="report_cantidades_action"
-        string="Detalle de factura"
-        model="andina.report.cantidades"
-        report_type = "qweb-pdf"
-        file="arc_andina.andina_report_cantidades_view"
-        name="arc_andina.andina_report_cantidades_view"
-        print_report_name="'Reporte detallado %s' % (object.date_inicio)"
-        paperformat="paperformat_andina_report"
-        menu="False"
-    />
+    <record id="report_cantidades_action" model="ir.actions.report">
+        <field name="name">Detalle de factura</field>
+        <field name="model">andina.report.cantidades</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">andina.andina_report_cantidades_view</field>
+        <field name="report_file">andina.andina_report_cantidades_view</field>
+        <field name="print_report_name">'Reporte detallado %s' % (object.date_inicio)</field>
+        <field name="paperformat_id" ref="paperformat_andina_report"/>
+    </record>
 
-    <report 
-        id="report_consolidado_action"
-        string="Reporte consolidado"
-        model="andina.report.consolidado"
-        report_type = "qweb-pdf"
-        file="arc_andina.andina_report_consolidado_view"
-        name="arc_andina.andina_report_consolidado_view"
-        print_report_name="'Reporte consolidado %s' % (object.date_inicio)"
-        paperformat="paperformat_andina_report"
-        menu="False"
-    />
+    <record id="report_consolidado_action" model="ir.actions.report">
+        <field name="name">Reporte consolidado</field>
+        <field name="model">andina.report.consolidado</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">andina.andina_report_consolidado_view</field>
+        <field name="report_file">andina.andina_report_consolidado_view</field>
+        <field name="print_report_name">'Reporte consolidado %s' % (object.fecha_inicio)</field>
+        <field name="paperformat_id" ref="paperformat_andina_report"/>
+    </record>
 
-    <report 
-        id="report_gerencia_action"
-        string="Reporte por gerencia"
-        model="andina.report.gerencia"
-        report_type = "qweb-pdf"
-        file="arc_andina.andina_report_gerencia_view"
-        name="arc_andina.andina_report_gerencia_view"
-        print_report_name="'Reporte por Gerencia %s' % (object.turno)"
-        paperformat="paperformat_andina_report"
-        menu="False"
-    />
+    <record id="report_gerencia_action" model="ir.actions.report">
+        <field name="name">Reporte por gerencia</field>
+        <field name="model">andina.report.gerencia</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">andina.andina_report_gerencia_view</field>
+        <field name="report_file">andina.andina_report_gerencia_view</field>
+        <field name="print_report_name">'Reporte por Gerencia %s' % (object.turno)</field>
+        <field name="paperformat_id" ref="paperformat_andina_report"/>
+    </record>
 
-    <report 
-        id="report_area_action"
-        string="Reporte por area"
-        model="andina.report.area"
-        report_type = "qweb-pdf"
-        file="arc_andina.andina_report_area_view"
-        name="arc_andina.andina_report_area_view"
-        print_report_name="'Reporte por Area %s' % (object.date_inicio)"
-        paperformat="paperformat_andina_report"
-        menu="False"
-    />
+    <record id="report_area_action" model="ir.actions.report">
+        <field name="name">Reporte por area</field>
+        <field name="model">andina.report.area</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">andina.andina_report_area_view</field>
+        <field name="report_file">andina.andina_report_area_view</field>
+        <field name="print_report_name">'Reporte por Area %s' % (object.fecha_inicio)</field>
+        <field name="paperformat_id" ref="paperformat_andina_report"/>
+    </record>
 </odoo>
